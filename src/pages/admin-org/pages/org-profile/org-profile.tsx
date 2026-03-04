@@ -10,15 +10,15 @@ export const OrgProfile = () => {
 	const profileTabs: TabNavigationItem[] = [
 		{
 			title: 'Основные данные',
-			link: `/org/profile/info`,
+			link: `/org/award/info`,
 		},
 		{
 			title: 'Авторизация',
-			link: `/org/profile/auth`,
+			link: `/org/award/auth`,
 		},
 		{
 			title: 'Реквизиты',
-			link: `/org/profile/details`,
+			link: `/org/award/details`,
 		},
 	]
 	return (

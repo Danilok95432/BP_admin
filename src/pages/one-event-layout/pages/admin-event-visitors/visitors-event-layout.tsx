@@ -12,31 +12,31 @@ export const VisitorsEventLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Регистрация',
-			link: `/event/event-lists/${id}/registrations`,
+			link: `/contest/contest-lists/${id}/registrations`,
 		},
 		{
 			title: 'Купленные билеты',
-			link: `/event/event-lists/${id}/tickets`,
+			link: `/contest/contest-lists/${id}/tickets`,
 		},
 		{
 			title: 'Журнал проходов',
-			link: `/event/event-lists/${id}/log-enters`,
+			link: `/contest/contest-lists/${id}/log-enters`,
 		},
 		{
 			title: 'Сводка продаж',
-			link: `/event/event-lists/${id}/sales`,
+			link: `/contest/contest-lists/${id}/sales`,
 		},
 		{
 			title: 'Наплывы',
-			link: `/event/event-lists/${id}/naplivi`,
+			link: `/contest/contest-lists/${id}/naplivi`,
 		},
 		{
 			title: 'Статистика SMS',
-			link: `/event/event-lists/${id}/sms`,
+			link: `/contest/contest-lists/${id}/sms`,
 		},
 		{
 			title: 'Агентский баланс',
-			link: `/event/event-lists/${id}/balance`,
+			link: `/contest/contest-lists/${id}/balance`,
 		},
 	]
 

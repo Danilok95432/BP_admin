@@ -12,15 +12,15 @@ export const SettingsEventLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Регистрация',
-			link: `/event/event-settings/${id}/registration`,
+			link: `/contest/contest-settings/${id}/registration`,
 		},
 		{
 			title: 'Виды билетов',
-			link: `/event/event-settings/${id}/tickets`,
+			link: `/contest/contest-settings/${id}/tickets`,
 		},
 		{
 			title: 'Оплата',
-			link: `/event/event-settings/${id}/payments`,
+			link: `/contest/contest-settings/${id}/payments`,
 		},
 	]
 

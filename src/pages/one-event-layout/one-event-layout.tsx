@@ -14,32 +14,32 @@ export const OneEventLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Профиль события',
-			link: `/event/event-profile/${id ?? 'new'}`,
+			link: `/contest/contest-profile/${id ?? 'new'}`,
 		},
 		{
 			title: 'Настройка',
-			link: `/event/event-settings/${id ?? 'new'}`,
-			indexLink: `/event/event-settings/${id}/registration`,
+			link: `/contest/contest-settings/${id ?? 'new'}`,
+			indexLink: `/contest/contest-settings/${id}/registration`,
 		},
 		{
 			title: 'Контент',
-			link: `/event/event-content/${id ?? 'new'}`,
-			indexLink: `/event/event-content/${id}/content`,
+			link: `/contest/contest-content/${id ?? 'new'}`,
+			indexLink: `/contest/contest-content/${id}/content`,
 		},
 		{
 			title: 'Пропуск',
-			link: `/event/event-pass/${id ?? 'new'}`,
-			indexLink: `/event/event-pass/${id}`,
+			link: `/contest/contest-pass/${id ?? 'new'}`,
+			indexLink: `/contest/contest-pass/${id}`,
 		},
 		{
 			title: 'Списки и статистика',
-			link: `/event/event-lists/${id}`,
-			indexLink: `/event/event-lists/${id}/registrations`,
+			link: `/contest/contest-lists/${id}`,
+			indexLink: `/contest/contest-lists/${id}/registrations`,
 		},
 		{
 			title: 'Размещение (публикация)',
-			link: `/event/event-placement/${id}`,
-			indexLink: `/event/event-placement/${id}`,
+			link: `/contest/contest-placement/${id}`,
+			indexLink: `/contest/contest-placement/${id}`,
 		},
 	]
 	const [isProgramPage, setIsProgramPage] = useState<boolean>(false)

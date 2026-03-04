@@ -2,18 +2,18 @@ import { type TabNavigationItem } from 'src/types/navigation'
 
 export const communityTabs: TabNavigationItem[] = [
 	{
-		title: 'Об этноспорте',
+		title: 'Детали и история',
 		link: '/about',
 		exact: true,
 	},
 	{
-		title: 'Русский этноспорт',
-		link: 'about-etnosport',
+		title: 'Лауреаты',
+		link: 'laureats',
 	},
-	{
-		title: 'Исконные забавы',
-		link: 'about-fun',
-	},
+	// {
+	// 	title: 'Исконные забавы',
+	// 	link: 'about-fun',
+	// },
 	/* {
 		title: 'Документы',
 		link: 'atm-documents',

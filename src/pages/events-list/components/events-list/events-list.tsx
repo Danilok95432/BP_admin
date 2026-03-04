@@ -5,9 +5,9 @@ export const EventsList = () => {
 	return (
 		<>
 			<Helmet>
-				<title>События</title>
+				<title>Номинации</title>
 			</Helmet>
-			<h3>События</h3>
+			<h3>Номинации</h3>
 			<EventsTable />
 		</>
 	)

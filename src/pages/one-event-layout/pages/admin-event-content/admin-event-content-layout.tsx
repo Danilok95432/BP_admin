@@ -12,19 +12,19 @@ export const AdminEventContentLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Контент',
-			link: `/event/event-content/${id}/content`,
+			link: `/contest/contest-content/${id}/content`,
 		},
 		{
 			title: 'Партнеры',
-			link: `/event/event-content/${id}/event-partners`,
+			link: `/contest/contest-content/${id}/contest-partners`,
 		},
 		{
 			title: 'Правила',
-			link: `/event/event-content/${id}/event-rules`,
+			link: `/contest/contest-content/${id}/contest-rules`,
 		},
 		{
 			title: 'Программа',
-			link: `/event/event-content/${id}/event-program/${id}`,
+			link: `/contest/contest-content/${id}/contest-program/${id}`,
 		},
 	]
 

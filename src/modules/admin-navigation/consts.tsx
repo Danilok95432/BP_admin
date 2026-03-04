@@ -13,7 +13,12 @@ export const adminMenuItems: NavigationItem[] = [
 	{
 		title: 'Организатор',
 		icon: <AdminOrgIconSVG />,
-		link: 'org/info',
+		link: 'org/award/info',
+	},
+	{
+		title: 'О премии',
+		icon: <AdminPartnersIconSvg />,
+		link: 'about',
 	},
 	{
 		title: 'Новости',
@@ -21,9 +26,9 @@ export const adminMenuItems: NavigationItem[] = [
 		link: 'news/news-list',
 	},
 	{
-		title: 'События',
+		title: 'Конкурс',
 		icon: <AdminEventsIconSvg />,
-		link: 'events/events-list',
+		link: 'contests/contests-list',
 	},
 	{
 		title: 'Гости',

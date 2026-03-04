@@ -15,7 +15,7 @@ export const StatisticEventLayout = () => {
 	const eventTabs: TabNavigationItem[] = [
 		{
 			title: 'Ворота и инспекторы',
-			link: `/event/event-statistic/${id}/gates`,
+			link: `/contest/contest-statistic/${id}/gates`,
 		},
 	]
 

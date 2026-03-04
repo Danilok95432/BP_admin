@@ -10,7 +10,7 @@ export const AdminEventsLayout = () => {
 	return (
 		<>
 			<div className={adminStyles.adminTitleTab}>
-				<h1>События</h1>
+				<h1>Конкурс</h1>
 				<TabNavigation navItems={eventTabs} />
 			</div>
 			<AdminContent

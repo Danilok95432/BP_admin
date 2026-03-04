@@ -2,11 +2,11 @@ import { type TabNavigationItem } from 'src/types/navigation'
 
 export const eventTabs: TabNavigationItem[] = [
 	{
-		title: 'События',
-		link: 'events-list',
+		title: 'Номинации',
+		link: 'contests-list',
 	},
-	{
-		title: 'Площадки',
-		link: 'locations-list',
-	},
+	// {
+	// 	title: 'Площадки',
+	// 	link: 'locations-list',
+	// },
 ]

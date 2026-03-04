@@ -84,12 +84,12 @@ export const EventsTable: FC = () => {
 	}
 
 	const rowClickHandler = (id: string) => {
-		navigate(`/event/event-profile/${id}`)
+		navigate(`/contest/contest-profile/${id}`)
 	}
 
 	const handleAddEventClick = async () => {
 		const newId = await addEvent()
-		navigate(`/event/event-profile/${newId}`)
+		navigate(`/contest/contest-profile/${newId}`)
 	}
 
 	if (isLoading || !eventsDataResponse?.events) return <Loader />

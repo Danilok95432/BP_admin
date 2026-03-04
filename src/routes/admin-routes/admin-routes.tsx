@@ -27,10 +27,6 @@ import { CommunityLayout } from 'src/pages/community-layout/community-layout'
 import { AdminCommunityAbout } from 'src/pages/community-layout/pages/admin-community-about/admin-community-about'
 import { AdminCommunityGames } from 'src/pages/community-layout/pages/admin-community-games/admin-community-games'
 
-import { EtnosportElementLayout } from 'src/pages/culture-element-layout/etnosport-element-layout'
-import { EtnosportInfo } from 'src/pages/culture-element-layout/pages/etnosport-info/etnosport-info'
-import { EtnosportRules } from 'src/pages/culture-element-layout/pages/etnosport-rules/etnosport-rules'
-
 import { AdminObjects } from 'src/pages/admin-objects/admin-objects'
 import { AdminPartnersLayout } from 'src/pages/admin-partners-layout/admin-partners-layout'
 import { ObjectElementLayout } from 'src/pages/object-element-layout/object-element-layout'
@@ -48,11 +44,7 @@ import { PartnersElements } from 'src/pages/admin-partners-layout/components/par
 import { AdminQuestionsLayout } from 'src/pages/admin-questions/admin-questions-layout'
 import { QuestionsElements } from 'src/pages/admin-questions/components/questions-elements/questions-elements'
 import { Question } from 'src/pages/admin-questions/components/question/question'
-import { FunRules } from 'src/pages/game-element-layout/pages/fun-rules/fun-rules'
-import { FunInfo } from 'src/pages/game-element-layout/pages/fun-info/fun-info'
-import { FunElementLayout } from 'src/pages/game-element-layout/fun-element-layout'
 import { ObjectVideos } from 'src/pages/object-element-layout/pages/object-videos/object-videos'
-import { AdminCommunityCulture } from 'src/pages/community-layout/pages/admin-community-culture/admin-community-culture'
 import { AdminEventsLayout } from 'src/pages/events-list/admin-events-layout'
 import { CiclesList } from 'src/pages/events-list/components/cicles-list/cicles-list'
 import { CicleInfo } from 'src/pages/events-list/components/cicles-list/components/cicle-info/cicle-info'
@@ -91,7 +83,6 @@ import { SMSElements } from 'src/pages/one-event-layout/pages/admin-event-visito
 import { AdminOrgLayout } from 'src/pages/admin-org/admin-org-layout'
 import { AdminGuestsLayout } from 'src/pages/admin-guests/admin-guests-layout'
 import { AdminStatisticLayout } from 'src/pages/admin-statistic/admin-statistic-layout'
-import { OrgInfo } from 'src/pages/admin-org/pages/org-info/org-info'
 import { OrgFinances } from 'src/pages/admin-org/pages/org-finances/org-finances'
 import { OrgStatistic } from 'src/pages/admin-org/pages/org-statistic/org-statistic'
 import { OrgProfile } from 'src/pages/admin-org/pages/org-profile/org-profile'
@@ -109,8 +100,6 @@ import { EntersListPage } from 'src/pages/one-event-layout/pages/admin-event-vis
 import { EntersListElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/enters-list-page/components/enters-list-elements/enters-list-elements'
 import { SaleStatPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/sale-stat-page'
 import { SaleStatElements } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/sale-stat-page/components/sale-stat-elements/sale-stat-elements'
-import { InfoElements } from 'src/pages/admin-org/pages/org-info/components/info-elements/info-elements'
-import { OneDocument } from 'src/pages/admin-org/pages/org-info/components/one-document/one-document'
 import { OrgProfileInfo } from 'src/pages/admin-org/pages/org-profile/layout/org-info/org-profile-info'
 import { OrgDetails } from 'src/pages/admin-org/pages/org-profile/layout/org-details/org-details'
 import { OrgAuth } from 'src/pages/admin-org/pages/org-profile/layout/org-auth/org-auth'
@@ -124,6 +113,13 @@ import { RegistrationsPage } from 'src/pages/one-event-layout/pages/admin-event-
 import { LocationsList } from 'src/pages/events-list/components/locations-list/locations-list'
 import { LocationsTable } from 'src/pages/events-list/components/locations-list/components/location-table/location-table'
 import { LocationInfo } from 'src/pages/events-list/components/locations-list/components/location-info/location-info'
+import { OrgFond } from 'src/pages/admin-org/pages/org-fond/org-fond'
+import { AdminCommunityDocuments } from 'src/pages/community-layout/pages/admin-community-documents/admin-community-documents'
+import { AdminCommunityHistory } from 'src/pages/community-layout/pages/admin-community-history/admin-community-history'
+import { AdminCommunityTraditions } from 'src/pages/community-layout/pages/admin-community-traditions/admin-community-traditions'
+import { TraditionHistory } from 'src/pages/tradition-element-layout/pages/tradition-history/tradition-history'
+import { TraditionInfo } from 'src/pages/tradition-element-layout/pages/tradition-info/tradition-info'
+import { TraditionElementLayout } from 'src/pages/tradition-element-layout/tradition-element-layout'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -147,15 +143,12 @@ export const AdminRoutes: FC = () => {
 					<Route path={AdminRoute.ExpressPlacement} element={<StepPlacement />} />
 				</Route>
 				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
-					<Route path={AdminRoute.OrgInfo} element={<OrgInfo />}>
-						<Route index element={<InfoElements />} />
-						<Route path=':id' element={<OneDocument />} />
-					</Route>
-					<Route path={AdminRoute.OrgProfile} element={<OrgProfile />}>
+					<Route path={AdminRoute.OrgAward} element={<OrgProfile />}>
 						<Route path={AdminRoute.OrgInfo} element={<OrgProfileInfo />} />
 						<Route path={AdminRoute.OrgAuth} element={<OrgAuth />} />
 						<Route path={AdminRoute.OrgDetails} element={<OrgDetails />} />
 					</Route>
+					<Route path={AdminRoute.OrgFond} element={<OrgFond />} />
 					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
 					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />}>
 						<Route path={AdminRoute.OrgStat} element={<OrgFinancesStat />} />
@@ -183,16 +176,14 @@ export const AdminRoutes: FC = () => {
 				</Route>
 				<Route path={AdminRoute.AdminAbout} element={<CommunityLayout />}>
 					<Route index element={<AdminCommunityAbout />} />
-					<Route path={AdminRoute.AdminAboutEtnosport} element={<AdminCommunityCulture />} />
-					<Route path={AdminRoute.AdminAboutFun} element={<AdminCommunityGames />} />
+					<Route path={AdminRoute.AdminAboutHistory} element={<AdminCommunityHistory />} />
+					<Route path={AdminRoute.AdminAtmansTraditions} element={<AdminCommunityTraditions />} />
+					<Route path={AdminRoute.AdminAtmansGames} element={<AdminCommunityGames />} />
+					<Route path={AdminRoute.AdminAboutDocuments} element={<AdminCommunityDocuments />} />
 				</Route>
-				<Route path={AdminRoute.AdminEtnosportElement} element={<EtnosportElementLayout />}>
-					<Route path={`${AdminRoute.AdminEtnosportInfo}/:id`} element={<EtnosportInfo />} />
-					<Route path={`${AdminRoute.AdminEtnosportRules}/:id`} element={<EtnosportRules />} />
-				</Route>
-				<Route path={AdminRoute.AdminFunElement} element={<FunElementLayout />}>
-					<Route path={`${AdminRoute.AdminFunInfo}/:id`} element={<FunInfo />} />
-					<Route path={`${AdminRoute.AdminFunRules}/:id`} element={<FunRules />} />
+				<Route path={AdminRoute.AdminTraditionElement} element={<TraditionElementLayout />}>
+					<Route path={`${AdminRoute.AdminTraditionInfo}/:id`} element={<TraditionInfo />} />
+					<Route path={`${AdminRoute.AdminTraditionHistory}/:id`} element={<TraditionHistory />} />
 				</Route>
 				<Route path={AdminRoute.AdminObject} element={<ObjectElementLayout />}>
 					<Route path={`${AdminRoute.AdminObjInfo}/:id`} element={<ObjectInfo />} />
