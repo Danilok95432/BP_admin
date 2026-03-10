@@ -8,7 +8,7 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 	},
 	{
 		name: 'surname',
-		placeholder: 'искать по фамилии покупателя...',
+		placeholder: 'искать по фамилии участника...',
 		type: 'text',
 	},
 	{
@@ -19,15 +19,6 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 	{
 		name: 'reg_type',
 		placeholder: 'вид регистрации',
-		type: 'select',
-		options: [
-			{ label: 'Одиночный', value: '0' },
-			{ label: 'Групповой', value: '1' },
-		],
-	},
-	{
-		name: 'deliver_type',
-		placeholder: 'вид доставки',
 		type: 'select',
 		options: [
 			{ label: 'Одиночный', value: '0' },

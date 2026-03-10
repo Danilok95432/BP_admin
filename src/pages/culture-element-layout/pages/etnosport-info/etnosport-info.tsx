@@ -105,23 +105,25 @@ export const EtnosportInfo = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Информация</title>
+				<title>Лауреат</title>
 			</Helmet>
 			<AdminContent className={styles.cultureInfoPage}>
 				<Link
-					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAboutEtnosport}`}
+					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAtmansTraditions}`}
 					className={adminStyles.adminReturnLink}
 				>
-					Возврат к списку элементов
+					Возврат к списку лауреатов
 				</Link>
-				<h3>Информация</h3>
+				<h3>Лауреат</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-						<ControlledInput
-							name='title'
-							label='Наименование элемента *'
-							maxWidth='1140px'
+						<ControlledInput name='title' label='Лауреат *' maxWidth='1140px' margin='0 0 20px 0' />
+						<ControlledSelect
+							name='year'
+							label='Год получения премии *'
+							yearsRange={{ start: 2015, end: 2026 }}
 							margin='0 0 20px 0'
+							className={styles.selectVid}
 						/>
 						<ControlledSelect
 							name='vid'
@@ -140,12 +142,7 @@ export const EtnosportInfo = () => {
 							imgtype='about_etno'
 							fileImages={vidInfo?.mainphoto}
 						/>
-						<QuillEditor
-							name='desc'
-							label='Первый текстовый блок'
-							$maxWidth='1140px'
-							$heightEditor='105px'
-						/>
+						<QuillEditor name='desc' label='Текст-анонс' $maxWidth='1140px' $heightEditor='105px' />
 						<ReactDropzone
 							margin='30px 0 20px 0'
 							label='Галерея изображений'
@@ -179,12 +176,6 @@ export const EtnosportInfo = () => {
 								</AddButton>
 							}
 						/>
-						<QuillEditor
-							name='bottomDesc'
-							label='Второй текстовый блок'
-							$heightEditor='105px'
-							$maxWidth='1140px'
-						/>
 						<FlexRow $margin='40px 0 45px 0' $gap='15px'>
 							<AdminButton as='button' type='submit' $variant={isSent ? 'sent' : 'primary'}>
 								Сохранить
@@ -196,10 +187,10 @@ export const EtnosportInfo = () => {
 					</form>
 				</FormProvider>
 				<Link
-					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAboutEtnosport}`}
+					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAtmansTraditions}`}
 					className={adminStyles.adminReturnLink}
 				>
-					Возврат к списку элементов
+					Возврат к списку лауреатов
 				</Link>
 			</AdminContent>
 		</>

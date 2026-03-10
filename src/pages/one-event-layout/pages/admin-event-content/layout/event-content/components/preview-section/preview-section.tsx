@@ -13,7 +13,7 @@ export const PreviewSection: FC<TitleSectionProps> = ({ logo }) => {
 		<AdminSection titleText='Основное изображение (логотип)'>
 			<ReactDropzone
 				name='logo'
-				prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
+				prompt='PNG, JPG, JPEG. Изображение должно быть круглым или квадратным, не более 3 Мб'
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				margin='0 0 20px 0'
 				previewVariant='sm-img'

@@ -7,7 +7,7 @@ export const RegistrationsPage: FC = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Регистрация</title>
+				<title>Участники</title>
 			</Helmet>
 			<Outlet />
 		</>

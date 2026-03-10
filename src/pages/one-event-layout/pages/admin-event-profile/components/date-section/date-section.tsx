@@ -13,7 +13,7 @@ export const DateSection = () => {
 	return (
 		<AdminSection isBlock={false}>
 			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
-				Начало события *
+				Начало приема заявок *
 			</CustomText>
 
 			<div className={styles.inputWrapper}>
@@ -40,7 +40,7 @@ export const DateSection = () => {
 			</div>
 
 			<CustomText $margin='0 0 5px 0' $fontWeight='600'>
-				Окончание события *
+				Окончание приема заявок *
 			</CustomText>
 			<GridRow $template='auto/204px 204px'>
 				<ControlledDateInput

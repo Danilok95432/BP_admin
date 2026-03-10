@@ -5,8 +5,8 @@ export const eventTabs: TabNavigationItem[] = [
 		title: 'Номинации',
 		link: 'contests-list',
 	},
-	// {
-	// 	title: 'Площадки',
-	// 	link: 'locations-list',
-	// },
+	{
+		title: 'О конкурсе',
+		link: 'about-contest',
+	},
 ]

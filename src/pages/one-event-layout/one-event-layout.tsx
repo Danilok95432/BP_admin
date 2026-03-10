@@ -16,21 +16,21 @@ export const OneEventLayout = () => {
 			title: 'Профиль события',
 			link: `/contest/contest-profile/${id ?? 'new'}`,
 		},
-		{
-			title: 'Настройка',
-			link: `/contest/contest-settings/${id ?? 'new'}`,
-			indexLink: `/contest/contest-settings/${id}/registration`,
-		},
+		// {
+		// 	title: 'Настройка',
+		// 	link: `/contest/contest-settings/${id ?? 'new'}`,
+		// 	indexLink: `/contest/contest-settings/${id}/registration`,
+		// },
 		{
 			title: 'Контент',
 			link: `/contest/contest-content/${id ?? 'new'}`,
 			indexLink: `/contest/contest-content/${id}/content`,
 		},
-		{
-			title: 'Пропуск',
-			link: `/contest/contest-pass/${id ?? 'new'}`,
-			indexLink: `/contest/contest-pass/${id}`,
-		},
+		// {
+		// 	title: 'Пропуск',
+		// 	link: `/contest/contest-pass/${id ?? 'new'}`,
+		// 	indexLink: `/contest/contest-pass/${id}`,
+		// },
 		{
 			title: 'Списки и статистика',
 			link: `/contest/contest-lists/${id}`,

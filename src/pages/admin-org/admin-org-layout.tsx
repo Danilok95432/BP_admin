@@ -10,7 +10,7 @@ export const AdminOrgLayout = () => {
 	return (
 		<>
 			<div className={adminStyles.adminTitleTab}>
-				<h1>Организатор</h1>
+				<h1>О фонде</h1>
 				<TabNavigation navItems={orgTabs} />
 			</div>
 			<AdminContent className={styles.newsContent} $backgroundColor='#ffffff' $padding='30px 0'>

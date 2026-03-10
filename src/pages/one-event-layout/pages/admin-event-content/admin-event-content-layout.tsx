@@ -11,7 +11,7 @@ export const AdminEventContentLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Контент',
+			title: 'Основной контент',
 			link: `/contest/contest-content/${id}/content`,
 		},
 		{
@@ -22,10 +22,6 @@ export const AdminEventContentLayout = () => {
 			title: 'Правила',
 			link: `/contest/contest-content/${id}/contest-rules`,
 		},
-		{
-			title: 'Программа',
-			link: `/contest/contest-content/${id}/contest-program/${id}`,
-		},
 	]
 
 	return (
@@ -33,7 +29,7 @@ export const AdminEventContentLayout = () => {
 			<Container $padding='35px 35px 0 35px' $paddingMobile='35px'>
 				<div className={styles.headRow}>
 					<div className={styles.adminTitleTab}>
-						<h2>Контент</h2>
+						<h2>Основной контент</h2>
 						<TabNavigation variant='visitors' navItems={eventTabs} />
 					</div>
 				</div>

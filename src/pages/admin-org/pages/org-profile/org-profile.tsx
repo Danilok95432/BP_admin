@@ -10,15 +10,15 @@ export const OrgProfile = () => {
 	const profileTabs: TabNavigationItem[] = [
 		{
 			title: 'Основные данные',
-			link: `/org/award/info`,
+			link: `/org/fond/info`,
 		},
-		{
-			title: 'Авторизация',
-			link: `/org/award/auth`,
-		},
+		// {
+		// 	title: 'Авторизация',
+		// 	link: `/org/award/auth`,
+		// },
 		{
 			title: 'Реквизиты',
-			link: `/org/award/details`,
+			link: `/org/fond/details`,
 		},
 	]
 	return (
@@ -26,7 +26,7 @@ export const OrgProfile = () => {
 			<Container $padding='0px 35px 0 35px' $paddingMobile='35px'>
 				<FlexRow className={styles.headRow}>
 					<div className={styles.adminTitleTab}>
-						<h2>Профиль организатора</h2>
+						<h2>О фонде</h2>
 						<TabNavigation variant='visitors' navItems={profileTabs} />
 					</div>
 				</FlexRow>

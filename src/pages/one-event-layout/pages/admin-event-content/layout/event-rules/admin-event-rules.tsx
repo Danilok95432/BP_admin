@@ -13,7 +13,6 @@ import adminStyles from 'src/routes/admin-layout/index.module.scss'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 
 import styles from './index.module.scss'
-import { PoliticSection } from './components/politic-section/politic-section'
 import { RulesSection } from './components/rules-section/rules-section'
 import { type RulesInputs, rulesSchema } from './schema'
 
@@ -59,7 +58,6 @@ export const AdminEventRules: FC = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<RulesSection />
-					<PoliticSection />
 					<AdminControllers
 						variant='4'
 						outLink={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`}

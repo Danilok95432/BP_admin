@@ -2,13 +2,13 @@ import { type TabNavigationItem } from 'src/types/navigation'
 
 export const orgTabs: TabNavigationItem[] = [
 	{
-		title: 'Беляевская премия',
-		link: `/org/award/info`,
-		indexLink: `/org/award/info`,
+		title: 'Информация',
+		link: `/org/fond/info`,
+		indexLink: `/org/fond/info`,
 	},
 	{
-		title: 'Беляевский фонд',
-		link: `/org/fond`,
-		indexLink: `/org/fond`,
+		title: 'Документы фонда',
+		link: `/org/docs`,
+		indexLink: `/org/docs`,
 	},
 ]

@@ -10,7 +10,6 @@ import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
 import { QuillEditor } from 'src/components/quill-editor/quill-editor'
-import { AdminRoute } from 'src/routes/admin-routes/consts'
 
 type DescSectionProps = {
 	ageList?: SelOption[]
@@ -23,7 +22,7 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='description'
-					label='Краткое описание *'
+					label='Описание номинации *'
 					$heightEditor='150px'
 					$maxWidth='1140px'
 					$width='1140px'
@@ -51,7 +50,7 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='conditions'
-					label='Условия участия *'
+					label='Текст номинации *'
 					$heightEditor='150px'
 					$maxWidth='1140px'
 					$width='1140px'
@@ -78,10 +77,13 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 
 			<div className={styles.inputWrapper}>
 				<ControlledSelect
-					label='Площадка *'
+					label='Тип номинации *'
 					name='locations_list'
 					margin='0 0 25px 0'
-					selectOptions={locationsList ?? [{ label: 'Не выбрано', value: '0' }]}
+					selectOptions={[
+						{ label: 'Открытая', value: '1' },
+						{ label: 'Закрытая', value: '2' },
+					]}
 				/>
 
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
@@ -89,12 +91,12 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 				</Tooltip>
 			</div>
 
-			<p className={styles.placeRequest}>
+			{/* <p className={styles.placeRequest}>
 				Если площадки нет в списке, Вы можете{' '}
 				<a href={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminLocationsList}/1`}>
 					запросить добавление новой площадки
 				</a>
-			</p>
+			</p> */}
 		</AdminSection>
 	)
 }

@@ -11,9 +11,9 @@ import { AdminNewsIconSvg } from 'src/UI/icons/adminNewsIconSVG'
 
 export const adminMenuItems: NavigationItem[] = [
 	{
-		title: 'Организатор',
+		title: 'О фонде',
 		icon: <AdminOrgIconSVG />,
-		link: 'org/award/info',
+		link: 'org/fond/info',
 	},
 	{
 		title: 'О премии',

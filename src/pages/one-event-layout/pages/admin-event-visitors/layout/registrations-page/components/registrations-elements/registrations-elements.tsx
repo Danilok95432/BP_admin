@@ -97,14 +97,11 @@ export const RegistrationsElements = () => {
 
 	const tableTitles = [
 		'ID',
+		'Участник',
 		'Дата и время регистрации',
 		'Вид регистрации',
-		'Билетов',
 		'Телефон',
 		'E-mail',
-		'Посетитель',
-		'Оплачено ₽',
-		'Вид доставки',
 	]
 
 	const formatObjectsTableData = (registrations: EventRegistrationsElem[]) => {
@@ -114,14 +111,11 @@ export const RegistrationsElements = () => {
 					rowId: regEl.id,
 					cells: [
 						<p key='0'>{regEl.id}</p>,
-						<p key='1'>{regEl.date}</p>,
-						<p key='2'>{regEl.reg_type}</p>,
-						<p key='3'>{regEl.count_tickets}</p>,
+						<p key='1'>{regEl.guest}</p>,
+						<p key='2'>{regEl.date}</p>,
+						<p key='3'>{regEl.reg_type}</p>,
 						<p key='4'>{regEl.phone}</p>,
 						<p key='5'>{regEl.email}</p>,
-						<p key='6'>{regEl.guest}</p>,
-						<p key='7'>{regEl.paid}</p>,
-						<p key='8'>{regEl.deliver_type}</p>,
 					],
 				}
 			}) ?? []

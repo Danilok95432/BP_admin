@@ -107,10 +107,10 @@ export const AdminCommunityCulture: FC = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Русский этноспорт</title>
+				<title>Лауреаты</title>
 			</Helmet>
 
-			<AdminContent title='Русский этноспорт' $backgroundColor='#ffffff'>
+			<AdminContent title='Лауреаты' $backgroundColor='#ffffff'>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
 						<QuillEditor $heightEditor='310px' name='anonstext' label='Текст-анонс' />

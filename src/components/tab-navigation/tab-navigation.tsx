@@ -8,6 +8,7 @@ import styles from './index.module.scss'
 import { FlexRow } from '../flex-row/flex-row'
 import { ActiveStepSVG } from 'src/UI/icons/activeStepSVG'
 import { NotActiveStepSVG } from 'src/UI/icons/notActiveStep'
+import classNames from 'classnames'
 
 type TabNavigationProps = {
 	navItems: TabNavigationItem[]
@@ -51,7 +52,7 @@ export const TabNavigation: FC<TabNavigationProps> = ({ navItems, variant = 'mai
 		return (
 			<ul className={styles.visitorTabList}>
 				{navItems?.map((navEl) => (
-					<li key={navEl.title}>
+					<li key={navEl.title} className={classNames({ [styles.disabled]: navEl.disabled })}>
 						<NavLink
 							className={({ isActive }) => setActive(isActive, styles.activeLink)}
 							to={navEl.link}

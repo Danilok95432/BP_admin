@@ -5,15 +5,18 @@ import { TableFiltration } from 'src/modules/table-filtration/table-filtration'
 import { CultureElementsFiltrationInputs } from './consts'
 
 import { CustomTable } from 'src/components/custom-table/custom-table'
-import { mainFormatDate } from 'src/helpers/utils'
 import { Loader } from 'src/components/loader/loader'
 import { RowController } from 'src/components/row-controller/row-controller'
 import { TableFooter } from 'src/components/table-footer/table-footer'
 import { GridRow } from 'src/components/grid-row/grid-row'
 
 import styles from './index.module.scss'
-import { VidItem } from 'src/types/about-etnosport'
-import { useDeleteVidByIdMutation, useGetNewIdVidQuery, useHideVidByIdMutation } from 'src/store/vids/vids.api'
+import {
+	useGetNewIdVidQuery,
+	useHideVidByIdMutation,
+	useDeleteVidByIdMutation,
+} from 'src/store/vids/vids.api'
+import { type VidItem } from 'src/types/about-etnosport'
 
 type CultureElementsProps = {
 	vids?: VidItem[]
@@ -31,7 +34,7 @@ export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = ['Название вида этноспорта', 'Вид участия', 'Размещено', '']
+	const tableTitles = ['Лауреаты', 'Вид участия', 'Год', '']
 	const formatCulturesTableData = (vidData: VidItem[]) => {
 		return vidData.map((vidEl) => {
 			return {
@@ -64,12 +67,12 @@ export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
 	}
 
 	const rowClickHandler = (id: string) => {
-		navigate(`/etnosport/etnosport-info/${id}`)
+		navigate(`/laureat/laureat-info/${id}`)
 	}
 
 	const handleAddCultureClick = async () => {
 		const newId = await addCulture()
-		navigate(`/etnosport/etnosport-info/${newId}`)
+		navigate(`/laureat/laureat-info/${newId}`)
 	}
 
 	if (!vids) return <Loader />

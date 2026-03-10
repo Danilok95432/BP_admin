@@ -37,7 +37,7 @@ export const AuthModal = () => {
 				setAuth(true)
 				setUser(resData.user)
 				closeModal()
-				navigate(`/org/award/info`)
+				navigate(`/org/fond/info`)
 			}
 		} catch (err) {
 			console.error(err)

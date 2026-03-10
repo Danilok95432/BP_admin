@@ -96,15 +96,13 @@ export const PurchasedTicketsElements = () => {
 
 	const tableTitles = [
 		'ID',
-		'Вид билета',
-		'Возраст',
-		'Номер билета',
-		'Вид покупки',
+		'Форма работы',
+		'Название работы',
+		'Автор работы',
 		'Телефон',
 		'E-mail',
-		'Скидка',
-		'Оплачено ₽',
 		'Статус',
+		'Возраст автора',
 	]
 
 	const sortTableTitles = ['Дата и время продажи']
@@ -119,29 +117,23 @@ export const PurchasedTicketsElements = () => {
 							{ticketEl.id}
 						</p>,
 						<p key='1'>{ticketEl.ticket_type}</p>,
-						<p key='2'>{ticketEl.age}</p>,
-						<p key='3' className={styles.center}>
+						<p key='2' className={styles.center}>
 							{ticketEl.ticket_number}
 						</p>,
-						<p key='4'>{ticketEl.purchase_type}</p>,
-						<p key='5'>{ticketEl.phone}</p>,
-						<p key='6'>{ticketEl.email}</p>,
-						<p key='7' className={styles.center}>
-							{ticketEl.discount}
-						</p>,
-						<p key='8' className={styles.center}>
-							{ticketEl.paid}
-						</p>,
+						<p key='3'>{ticketEl.purchase_type}</p>,
+						<p key='4'>{ticketEl.phone}</p>,
+						<p key='5'>{ticketEl.email}</p>,
 						<p
 							className={cn({
 								[styles.fullfield]: ticketEl.status === 'применен',
 								[styles.rejected]: ticketEl.status === 'возврат',
 								[styles.pending]: ticketEl.status === 'ожидает',
 							})}
-							key='9'
+							key='6'
 						>
 							{ticketEl.status}
 						</p>,
+						<p key='7'>{ticketEl.age}</p>,
 					],
 				}
 			}) ?? []

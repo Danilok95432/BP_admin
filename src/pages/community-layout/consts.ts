@@ -10,6 +10,14 @@ export const communityTabs: TabNavigationItem[] = [
 		title: 'Лауреаты',
 		link: 'laureats',
 	},
+	{
+		title: 'Документы',
+		link: 'docs',
+	},
+	{
+		title: 'Александр Беляев',
+		link: 'belyaev',
+	},
 	// {
 	// 	title: 'Исконные забавы',
 	// 	link: 'about-fun',

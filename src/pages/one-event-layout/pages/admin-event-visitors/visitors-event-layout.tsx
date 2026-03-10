@@ -11,11 +11,11 @@ export const VisitorsEventLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Регистрация',
+			title: 'Участники',
 			link: `/contest/contest-lists/${id}/registrations`,
 		},
 		{
-			title: 'Купленные билеты',
+			title: 'Поданные заявки',
 			link: `/contest/contest-lists/${id}/tickets`,
 		},
 		{
@@ -23,21 +23,37 @@ export const VisitorsEventLayout = () => {
 			link: `/contest/contest-lists/${id}/log-enters`,
 		},
 		{
-			title: 'Сводка продаж',
-			link: `/contest/contest-lists/${id}/sales`,
+			title: 'Лонг лист',
+			link: `/contest/contest-lists/${id}/long-list`,
 		},
 		{
-			title: 'Наплывы',
-			link: `/contest/contest-lists/${id}/naplivi`,
+			title: 'Шорт-лист',
+			link: `/contest/contest-lists/${id}/short-list`,
 		},
 		{
-			title: 'Статистика SMS',
-			link: `/contest/contest-lists/${id}/sms`,
+			title: 'Голосование экспертного совета',
+			link: `/contest/contest-lists/${id}/expert-soviet`,
 		},
 		{
-			title: 'Агентский баланс',
-			link: `/contest/contest-lists/${id}/balance`,
+			title: 'Народное голосование',
+			link: `/contest/contest-lists/${id}/people-voting`,
 		},
+		// {
+		// 	title: 'Сводка продаж',
+		// 	link: `/contest/contest-lists/${id}/sales`,
+		// },
+		// {
+		// 	title: 'Наплывы',
+		// 	link: `/contest/contest-lists/${id}/naplivi`,
+		// },
+		// {
+		// 	title: 'Статистика SMS',
+		// 	link: `/contest/contest-lists/${id}/sms`,
+		// },
+		// {
+		// 	title: 'Агентский баланс',
+		// 	link: `/contest/contest-lists/${id}/balance`,
+		// },
 	]
 
 	return (

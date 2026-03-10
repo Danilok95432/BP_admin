@@ -113,13 +113,20 @@ import { RegistrationsPage } from 'src/pages/one-event-layout/pages/admin-event-
 import { LocationsList } from 'src/pages/events-list/components/locations-list/locations-list'
 import { LocationsTable } from 'src/pages/events-list/components/locations-list/components/location-table/location-table'
 import { LocationInfo } from 'src/pages/events-list/components/locations-list/components/location-info/location-info'
-import { OrgFond } from 'src/pages/admin-org/pages/org-fond/org-fond'
 import { AdminCommunityDocuments } from 'src/pages/community-layout/pages/admin-community-documents/admin-community-documents'
 import { AdminCommunityHistory } from 'src/pages/community-layout/pages/admin-community-history/admin-community-history'
-import { AdminCommunityTraditions } from 'src/pages/community-layout/pages/admin-community-traditions/admin-community-traditions'
-import { TraditionHistory } from 'src/pages/tradition-element-layout/pages/tradition-history/tradition-history'
-import { TraditionInfo } from 'src/pages/tradition-element-layout/pages/tradition-info/tradition-info'
-import { TraditionElementLayout } from 'src/pages/tradition-element-layout/tradition-element-layout'
+import { AdminCommunityCulture } from 'src/pages/community-layout/pages/admin-community-culture/admin-community-culture'
+import { EtnosportElementLayout } from 'src/pages/culture-element-layout/etnosport-element-layout'
+import { EtnosportInfo } from 'src/pages/culture-element-layout/pages/etnosport-info/etnosport-info'
+import { EtnosportRules } from 'src/pages/culture-element-layout/pages/etnosport-rules/etnosport-rules'
+import { AdminAboutContest } from 'src/pages/events-list/components/about-contest/about-contest'
+import { LongListPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/long-list-page/long-list-page'
+import { LongList } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/long-list-page/components/long-list/long-list'
+import { ShortListPage } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/short-list-page/short-list-page'
+import { ShortList } from 'src/pages/one-event-layout/pages/admin-event-visitors/layout/short-list-page/components/short-list/short-list'
+import { OrgDocs } from 'src/pages/admin-org/pages/org-docs/org-docs'
+import { AboutDocs } from 'src/pages/community-layout/pages/admin-community-docs/admin-community-docs'
+import { AdminCommunityBelyaev } from 'src/pages/community-layout/pages/admin-community-belyaev/admin-community-belyaev'
 
 export const AdminRoutes: FC = () => {
 	return (
@@ -143,12 +150,12 @@ export const AdminRoutes: FC = () => {
 					<Route path={AdminRoute.ExpressPlacement} element={<StepPlacement />} />
 				</Route>
 				<Route path={AdminRoute.AdminOrg} element={<AdminOrgLayout />}>
-					<Route path={AdminRoute.OrgAward} element={<OrgProfile />}>
+					<Route path={AdminRoute.OrgFond} element={<OrgProfile />}>
 						<Route path={AdminRoute.OrgInfo} element={<OrgProfileInfo />} />
 						<Route path={AdminRoute.OrgAuth} element={<OrgAuth />} />
 						<Route path={AdminRoute.OrgDetails} element={<OrgDetails />} />
 					</Route>
-					<Route path={AdminRoute.OrgFond} element={<OrgFond />} />
+					<Route path={AdminRoute.OrgDocs} element={<OrgDocs />} />
 					<Route path={AdminRoute.OrgStatistic} element={<OrgStatistic />} />
 					<Route path={AdminRoute.OrgFinances} element={<OrgFinances />}>
 						<Route path={AdminRoute.OrgStat} element={<OrgFinancesStat />} />
@@ -177,13 +184,15 @@ export const AdminRoutes: FC = () => {
 				<Route path={AdminRoute.AdminAbout} element={<CommunityLayout />}>
 					<Route index element={<AdminCommunityAbout />} />
 					<Route path={AdminRoute.AdminAboutHistory} element={<AdminCommunityHistory />} />
-					<Route path={AdminRoute.AdminAtmansTraditions} element={<AdminCommunityTraditions />} />
+					<Route path={AdminRoute.AdminAtmansTraditions} element={<AdminCommunityCulture />} />
+					<Route path='docs' element={<AboutDocs />} />
+					<Route path={AdminRoute.AdminAboutBelyaev} element={<AdminCommunityBelyaev />} />
 					<Route path={AdminRoute.AdminAtmansGames} element={<AdminCommunityGames />} />
 					<Route path={AdminRoute.AdminAboutDocuments} element={<AdminCommunityDocuments />} />
 				</Route>
-				<Route path={AdminRoute.AdminTraditionElement} element={<TraditionElementLayout />}>
-					<Route path={`${AdminRoute.AdminTraditionInfo}/:id`} element={<TraditionInfo />} />
-					<Route path={`${AdminRoute.AdminTraditionHistory}/:id`} element={<TraditionHistory />} />
+				<Route path={AdminRoute.AdminLaureat} element={<EtnosportElementLayout />}>
+					<Route path={`${AdminRoute.AdminLaureatInfo}/:id`} element={<EtnosportInfo />} />
+					<Route path={`${AdminRoute.AdminLaureatRule}/:id`} element={<EtnosportRules />} />
 				</Route>
 				<Route path={AdminRoute.AdminObject} element={<ObjectElementLayout />}>
 					<Route path={`${AdminRoute.AdminObjInfo}/:id`} element={<ObjectInfo />} />
@@ -202,6 +211,7 @@ export const AdminRoutes: FC = () => {
 						<Route index element={<CiclesTable />} />
 						<Route path=':id' element={<CicleInfo />} />
 					</Route>
+					<Route path={AdminRoute.AdminAboutContest} element={<AdminAboutContest />} />
 					<Route path={AdminRoute.AdminLocationsList} element={<LocationsList />}>
 						<Route index element={<LocationsTable />} />
 						<Route path=':id' element={<LocationInfo />} />
@@ -321,6 +331,18 @@ export const AdminRoutes: FC = () => {
 						</Route>
 						<Route path={`${AdminRoute.Sales}`} element={<SaleStatPage />}>
 							<Route index element={<SaleStatElements />} />
+						</Route>
+						<Route path={`${AdminRoute.LongList}`} element={<LongListPage />}>
+							<Route index element={<LongList />} />
+						</Route>
+						<Route path={`${AdminRoute.ShortList}`} element={<ShortListPage />}>
+							<Route index element={<ShortList />} />
+						</Route>
+						<Route path={`${AdminRoute.ExpertSoviet}`} element={<ShortListPage />}>
+							<Route index element={<ShortList />} />
+						</Route>
+						<Route path={`${AdminRoute.PeopleVoting}`} element={<ShortListPage />}>
+							<Route index element={<ShortList />} />
 						</Route>
 						<Route path={`${AdminRoute.Naplivi}`} element={<SMSPage />}>
 							<Route index element={<SMSElements />} />

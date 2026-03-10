@@ -1,16 +1,15 @@
-import React, { type FC } from 'react'
+import React, { type FC, useMemo } from 'react'
 import { type SelOption } from 'src/types/select'
 import { type FieldError, useController, useFormContext } from 'react-hook-form'
 
 import Select from 'react-dropdown-select'
-
-import styles from './index.module.scss'
-
 import { ErrorMessage } from '@hookform/error-message'
 import cn from 'classnames'
 
+import styles from './index.module.scss'
+
 type ControlledSelectProps = {
-	selectOptions: SelOption[]
+	selectOptions?: SelOption[] // Делаем опциональным
 	name: string
 	label?: string
 	className?: string
@@ -19,9 +18,11 @@ type ControlledSelectProps = {
 	disabled?: boolean
 	isRequired?: boolean
 	bigFont?: boolean
+	yearsRange?: { start: number; end: number } // Добавляем yearsRange
 }
+
 export const ControlledSelect: FC<ControlledSelectProps> = ({
-	selectOptions,
+	selectOptions = [], // Значение по умолчанию
 	name,
 	label,
 	className,
@@ -30,6 +31,7 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	disabled,
 	isRequired,
 	bigFont = false,
+	yearsRange,
 	...props
 }) => {
 	const {
@@ -38,13 +40,32 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 		formState: { errors },
 	} = useFormContext()
 
+	// Генерируем опции годов, если передан yearsRange
+	const options = useMemo(() => {
+		if (yearsRange) {
+			const years: SelOption[] = []
+			for (let year = yearsRange.end; year >= yearsRange.start; year--) {
+				years.push({
+					value: year.toString(),
+					label: year.toString(),
+				})
+			}
+			return years
+		}
+		return selectOptions
+	}, [yearsRange, selectOptions])
+
 	const {
-		field: { onChange },
+		field: { onChange, value },
 	} = useController({
 		name,
 		control,
-		defaultValue: selectOptions[0].value,
+		defaultValue: options[0]?.value || '',
 	})
+
+	// Находим выбранную опцию для отображения
+	const selectedValues = options.filter((opt) => opt.value === value)
+
 	return (
 		<div
 			className={cn(styles.selectWrapper, { [styles.selectHugeWrapper]: bigFont }, className)}
@@ -58,8 +79,8 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 			<Select
 				{...register(name)}
 				{...props}
-				options={selectOptions}
-				values={[selectOptions[0]]}
+				options={options}
+				values={selectedValues}
 				onChange={(values) => onChange(values[0]?.value)}
 				disabled={disabled}
 				className={cn({ [styles.disabled]: disabled })}

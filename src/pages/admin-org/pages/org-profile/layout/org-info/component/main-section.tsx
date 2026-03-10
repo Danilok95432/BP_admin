@@ -25,8 +25,8 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			<div className={styles.inputWrapper}>
 				<ControlledInput
 					name='shortTitle'
-					label='Краткое название организатора *'
-					placeholder='Краткое название организатора'
+					label='Краткое название фонда *'
+					placeholder='Краткое название фонда'
 					margin='0 0 20px 0'
 					maxWidth='1140px'
 				/>
@@ -38,9 +38,10 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 				<div className={styles.inputWrapper}>
 					<ControlledInput
 						name='title'
-						label='Полное название организатора *'
-						placeholder='Полное название организатора'
+						label='Полное название фонда *'
+						placeholder='Полное название фонда'
 						maxWidth='1140px'
+						margin='0 0 20px 0'
 						disabled={activated}
 						locked={activated}
 					/>
@@ -48,10 +49,10 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 						<InfoIconSvg />
 					</Tooltip>
 				</div>
-				<p className={styles.disclaimer}>
+				{/* <p className={styles.disclaimer}>
 					Для того, чтобы сменить официальное полное название активированного организатора,{' '}
 					<a href='/'>обратитесь к администратору</a>
-				</p>
+				</p> */}
 			</FlexRow>
 			<ReactDropzone
 				label='Логотип *'
@@ -68,22 +69,23 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			<FlexRow className={styles.adminRow}>
 				<ControlledInput
 					name='short'
-					label='Краткая информация об организаторе'
+					label='Краткая информация о фонде'
 					placeholder='Введите текст...'
 					isTextarea
 					height='100px'
 					margin='0 0 20px 0'
+					className={styles.editor}
 				/>
 			</FlexRow>
 			<QuillEditor
 				name='full'
-				label='Полная информация об организаторе'
+				label='Полная информация о фонде'
 				$heightEditor='150px'
 				$maxWidth='1140px'
 				$width='100%'
 				className={styles.editor}
 			/>
-			<FlexRow className={styles.adminRow}>
+			{/* <FlexRow className={styles.adminRow}>
 				<div className={styles.inputWrapper}>
 					<ControlledInput
 						name='region'
@@ -103,7 +105,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 					Для того, чтобы сменить регион и населенный пункт местонахождения активированного
 					организатора, <a href='/'>обратитесь к администратору</a>
 				</p>
-			</FlexRow>
+			</FlexRow> */}
 			<FlexRow className={styles.adminRow}>
 				<div className={styles.inputWrapper}>
 					<ControlledInput
@@ -115,15 +117,16 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 						height='80px'
 						locked={activated}
 						disabled={activated}
+						margin='0 0 20px 0'
 					/>
 					<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 						<InfoIconSvg />
 					</Tooltip>
 				</div>
-				<p className={styles.disclaimer}>
+				{/* <p className={styles.disclaimer}>
 					Для того, чтобы сменить юридический адрес активированного организатора,{' '}
 					<a href='/'>обратитесь к администратору</a>
-				</p>
+				</p> */}
 			</FlexRow>
 			<div className={styles.inputWrapper}>
 				<ControlledInput

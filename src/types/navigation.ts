@@ -20,4 +20,5 @@ export type TabNavigationItem = {
 	link: string
 	indexLink?: string
 	exact?: boolean
+	disabled?: boolean
 }

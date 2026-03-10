@@ -3,9 +3,7 @@
   minmax(242px, 326px)
   minmax(266px, 326px)
   minmax(255px, 326px)
-  minmax(160px, 160px)
-  minmax(160px, 160px)
-  minmax(160px, 1fr);
+  minmax(160px, 160px);
   @media (max-width: 1440px) {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
@@ -14,14 +12,12 @@
 .newsTable {
   grid-template-columns:
   minmax(90px, 90px)
-  minmax(170px, 170px)
-  minmax(170px, 170px)
-  minmax(170px, 170px)
+  minmax(170px, 1fr)
+  minmax(170px, 1fr)
+  minmax(170px, 1fr)
   minmax(170px, 170px)
   minmax(170px, 170px)
   minmax(200px, 200px)
-  minmax(110px, 110px)
-  minmax(170px, 170px)
   minmax(120px, 1fr);
   .checkBoxWrapperNews {
     margin: 14px auto auto 25px;

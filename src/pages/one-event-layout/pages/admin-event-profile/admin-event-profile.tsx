@@ -157,9 +157,9 @@ export const AdminEventProfile: FC = () => {
 				to={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`}
 				className={adminStyles.adminReturnLink}
 			>
-				Возврат к списку событий
+				Возврат к списку номинаций
 			</Link>
-			{id === 'new' ? <h3>Профиль события</h3> : <h3>Редактировать событие</h3>}
+			{id === 'new' ? <h3>Профиль номинации</h3> : <h3>Редактировать номинацию</h3>}
 			<FormProvider {...methods}>
 				<form
 					className={styles.eventProfileForm}
@@ -181,7 +181,7 @@ export const AdminEventProfile: FC = () => {
 					{id === 'new' ? (
 						<FlexRow $margin='0 0 40px 0'>
 							<AdminButton as='button' type='submit'>
-								Создать новое событие
+								Создать новую номинацию
 							</AdminButton>
 							<AdminButton
 								as='route'
@@ -221,7 +221,7 @@ export const AdminEventProfile: FC = () => {
 				to={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`}
 				className={adminStyles.adminReturnLink}
 			>
-				Возврат к списку событий
+				Возврат к списку номинаций
 			</Link>
 		</AdminContent>
 	)

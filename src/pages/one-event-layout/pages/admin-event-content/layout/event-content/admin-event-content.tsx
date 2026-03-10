@@ -20,12 +20,8 @@ import {
 } from 'src/store/events/events.api'
 import { booleanToNumberString, currentDateString, formatDateToYYYYMMDD } from 'src/helpers/utils'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { PromoSection } from './components/promo-section/promo-section'
-import { InfoSection } from './components/info-section/info-section'
 import { PreviewSection } from './components/preview-section/preview-section'
-import { PlacementSection } from './components/placement-section/placement-section'
 import { GallerySection } from './components/gallery-section/gallery-section'
-import { LinksSection } from './components/links-section/links-section'
 import { DocsSection } from './components/docs-section/docs-section'
 
 export const AdminEventContent: FC = () => {
@@ -115,12 +111,12 @@ export const AdminEventContent: FC = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<PreviewSection logo={contentInfoData?.photo} />
-					<PlacementSection />
+					{/* <PlacementSection /> */}
 					<GallerySection images={contentInfoData?.photos} idItem={id} />
 					<DocsSection files={contentInfoData?.documents} />
-					<LinksSection />
-					<PromoSection images={contentInfoData?.promo} idItem={id} />
-					<InfoSection photo={contentInfoData?.infoblock?.photo} />
+					{/* <LinksSection /> */}
+					{/* <PromoSection images={contentInfoData?.promo} idItem={id} /> */}
+					{/* <InfoSection photo={contentInfoData?.infoblock?.photo} /> */}
 					<AdminControllers
 						variant={'2'}
 						outLink={`/${AdminRoute.AdminEventLayout}/${AdminRoute.AdminEventsList}`}

@@ -44,7 +44,7 @@ export const EventsTable: FC = () => {
 		return newIdResponse.id
 	}
 
-	const tableTitles = ['Наименование события', 'Начало', 'Окончание', 'Площадка', '']
+	const tableTitles = ['Номинация', 'Начало', 'Окончание', 'Тип номинации', '']
 	const formatEventsTableData = (eventsData: EventItem[]) => {
 		return eventsData.map((eventEl) => {
 			return {
@@ -68,7 +68,7 @@ export const EventsTable: FC = () => {
 						id={eventEl.id}
 						hideHandler={rowHideHandler}
 						removeHandler={rowDeleteHandler}
-						textOfHidden='Скрыть событие'
+						textOfHidden='Скрыть номинацию'
 						key='4'
 					/>,
 				],
@@ -108,7 +108,7 @@ export const EventsTable: FC = () => {
 			<TableFooter
 				totalElements={eventsDataResponse?.events.length}
 				addClickHandler={handleAddEventClick}
-				addText='Добавить событие'
+				addText='Добавить номинацию'
 			/>
 		</div>
 	)

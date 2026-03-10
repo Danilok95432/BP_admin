@@ -5,7 +5,7 @@ import { QuillEditor } from 'src/components/quill-editor/quill-editor'
 
 export const RulesSection = () => {
 	return (
-		<AdminSection titleText='Правила посещения игр' className={styles.titleSectionInner}>
+		<AdminSection titleText='Правила отбора номинации' className={styles.titleSectionInner}>
 			<div className={styles.inputWrapper}>
 				<ControlledInput
 					name='rule_name'
