@@ -19,7 +19,7 @@ export enum AdminRoute {
 	AdminTraditionElement = 'tradition',
 	AdminTraditionInfo = 'tradition-info',
 	AdminTraditionHistory = 'tradition-history',
-	AdminAtmansTraditions = 'laureats',
+	AdminLaureats = 'laureats',
 	AdminLaureat = 'laureat',
 	AdminLaureatInfo = 'laureat-info',
 	AdminLaureatRule = 'laureat-rules',

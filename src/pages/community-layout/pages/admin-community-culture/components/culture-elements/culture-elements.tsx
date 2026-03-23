@@ -11,21 +11,21 @@ import { TableFooter } from 'src/components/table-footer/table-footer'
 import { GridRow } from 'src/components/grid-row/grid-row'
 
 import styles from './index.module.scss'
+import { type LaureatItem } from 'src/types/laureats'
 import {
-	useGetNewIdVidQuery,
-	useHideVidByIdMutation,
-	useDeleteVidByIdMutation,
-} from 'src/store/vids/vids.api'
-import { type VidItem } from 'src/types/about-etnosport'
+	useDeleteLaureatByIdMutation,
+	useGetNewIdLaureatQuery,
+	useHideLaureatByIdMutation,
+} from 'src/store/laureats/laureats'
 
 type CultureElementsProps = {
-	vids?: VidItem[]
+	laureats?: LaureatItem[]
 }
 
-export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
-	const { refetch: getNewId } = useGetNewIdVidQuery(null)
-	const [hideCulturesById] = useHideVidByIdMutation()
-	const [deleteCulturesById] = useDeleteVidByIdMutation()
+export const CultureElements: FC<CultureElementsProps> = ({ laureats = [] }) => {
+	const { refetch: getNewId } = useGetNewIdLaureatQuery(null)
+	const [hideCulturesById] = useHideLaureatByIdMutation()
+	const [deleteCulturesById] = useDeleteLaureatByIdMutation()
 
 	const navigate = useNavigate()
 
@@ -35,20 +35,20 @@ export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
 	}
 
 	const tableTitles = ['Лауреаты', 'Вид участия', 'Год', '']
-	const formatCulturesTableData = (vidData: VidItem[]) => {
-		return vidData.map((vidEl) => {
+	const formatCulturesTableData = (laureatData: LaureatItem[]) => {
+		return laureatData.map((laureatEl) => {
 			return {
-				rowId: vidEl.id,
+				rowId: laureatEl.id,
 				cells: [
-					<p className={cn({ 'hidden-cell-icon': vidEl.hidden })} key='0'>
-						{vidEl.title}
+					<p className={cn({ 'hidden-cell-icon': laureatEl.hidden })} key='0'>
+						{laureatEl.laureat_name}
 					</p>,
-					<p className={cn({ 'hidden-cell': vidEl.hidden })} key='1'>
-						{vidEl.is_group ? 'Одиночное' : 'Групповое'}
+					<p className={cn({ 'hidden-cell': laureatEl.hidden })} key='1'></p>,
+					<p className={cn({ 'hidden-cell': laureatEl.hidden })} key='2'>
+						{laureatEl.laureat_year}
 					</p>,
-					<p className={cn({ 'hidden-cell': vidEl.hidden })} key='2'></p>,
 					<RowController
-						id={vidEl.id}
+						id={laureatEl.id}
 						hideHandler={rowHideHandler}
 						removeHandler={rowDeleteHandler}
 						textOfHidden='Скрыть направление'
@@ -75,7 +75,7 @@ export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
 		navigate(`/laureat/laureat-info/${newId}`)
 	}
 
-	if (!vids) return <Loader />
+	if (!laureats) return <Loader />
 
 	return (
 		<div>
@@ -84,12 +84,12 @@ export const CultureElements: FC<CultureElementsProps> = ({ vids = [] }) => {
 			</GridRow>
 			<CustomTable
 				className={styles.cultureTable}
-				rowData={formatCulturesTableData(vids)}
+				rowData={formatCulturesTableData(laureats)}
 				colTitles={tableTitles}
 				rowClickHandler={rowClickHandler}
 			/>
 			<TableFooter
-				totalElements={vids.length}
+				totalElements={laureats.length}
 				addClickHandler={handleAddCultureClick}
 				addText='Добавить элемент'
 			/>

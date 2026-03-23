@@ -1,14 +1,17 @@
 import { type ImageItemWithText } from 'src/types/photos'
+import { type SelOption } from 'src/types/select'
 import * as yup from 'yup'
 
-export type VidInfoInputs = {
-	title: string
-	desc: string
+export type LaureatInfoInputs = {
+	laureat_name: string
+	laureat_year?: SelOption[] | string
+	laureat_desc?: string
+	laureat_info?: string
+	laureat_full?: string
 	mainphoto?: ImageItemWithText[]
-	bottomDesc?: string
+	photos?: ImageItemWithText[]
 }
 
-export const vidInfoSchema = yup.object().shape({
-	title: yup.string().required('Введите наименование'),
-	desc: yup.string().required('Введите описание традиции'),
+export const laureatInfoSchema = yup.object().shape({
+	laureat_name: yup.string().required('Введите лауреата'),
 })

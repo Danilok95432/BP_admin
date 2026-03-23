@@ -54,7 +54,7 @@ export const AuthModal = () => {
 	return (
 		<div className={styles.authModal}>
 			<div className='modal-header'>
-				<h3>Т-6 Атманов Угол</h3>
+				<h3>Беляевская премия</h3>
 			</div>
 			<div className='modal-content'>
 				<h4>Вход в систему</h4>

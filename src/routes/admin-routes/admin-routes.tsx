@@ -184,7 +184,7 @@ export const AdminRoutes: FC = () => {
 				<Route path={AdminRoute.AdminAbout} element={<CommunityLayout />}>
 					<Route index element={<AdminCommunityAbout />} />
 					<Route path={AdminRoute.AdminAboutHistory} element={<AdminCommunityHistory />} />
-					<Route path={AdminRoute.AdminAtmansTraditions} element={<AdminCommunityCulture />} />
+					<Route path={AdminRoute.AdminLaureats} element={<AdminCommunityCulture />} />
 					<Route path='docs' element={<AboutDocs />} />
 					<Route path={AdminRoute.AdminAboutBelyaev} element={<AdminCommunityBelyaev />} />
 					<Route path={AdminRoute.AdminAtmansGames} element={<AdminCommunityGames />} />

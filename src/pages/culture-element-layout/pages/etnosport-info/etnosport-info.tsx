@@ -1,6 +1,6 @@
 import {
-	type VidInfoInputs,
-	vidInfoSchema,
+	type LaureatInfoInputs,
+	laureatInfoSchema,
 } from 'src/pages/culture-element-layout/pages/etnosport-info/schema'
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router-dom'
@@ -27,16 +27,18 @@ import { ImageModal } from 'src/modals/images-modal/images-modal'
 import { type ImageItemWithText } from 'src/types/photos'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
-import { useGetVidInfoQuery, useSaveVidInfoMutation } from 'src/store/vids/vids.api'
+import { useGetLaureatInfoQuery, useSaveLaureatInfoMutation } from 'src/store/laureats/laureats'
 
 export const EtnosportInfo = () => {
 	const { id = '0' } = useParams()
-	const { data: vidInfo } = useGetVidInfoQuery(id)
-	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(vidInfo?.mainphoto ?? [])
-	const [saveCultureInfo] = useSaveVidInfoMutation()
+	const { data: laureatInfo } = useGetLaureatInfoQuery(id)
+	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(
+		laureatInfo?.mainphoto ?? [],
+	)
+	const [saveCultureInfo] = useSaveLaureatInfoMutation()
 
 	const { refetch: getNewId } = useGetNewIdImageQuery({
-		imgtype: 'about_etno',
+		imgtype: 'laureat_gallery',
 		idItem: id,
 	})
 	const addImage = async () => {
@@ -66,7 +68,7 @@ export const EtnosportInfo = () => {
 		openModal(
 			<ImageModal
 				id={newId}
-				imgtype='about_etno'
+				imgtype='laureat_gallery'
 				syncAddHandler={syncAddImagesHandler}
 				syncEditHandler={syncEditImagesHandler}
 			/>,
@@ -74,12 +76,12 @@ export const EtnosportInfo = () => {
 	}
 
 	useEffect(() => {
-		setLocaleImages(vidInfo?.mainphoto ?? [])
-	}, [vidInfo?.mainphoto])
+		setLocaleImages(laureatInfo?.mainphoto ?? [])
+	}, [laureatInfo?.mainphoto])
 
-	const methods = useForm<VidInfoInputs>({
+	const methods = useForm<LaureatInfoInputs>({
 		mode: 'onBlur',
-		resolver: yupResolver(vidInfoSchema),
+		resolver: yupResolver(laureatInfoSchema),
 		defaultValues: {
 			mainphoto: [],
 		},
@@ -87,7 +89,7 @@ export const EtnosportInfo = () => {
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
 
-	const onSubmit: SubmitHandler<VidInfoInputs> = async (data) => {
+	const onSubmit: SubmitHandler<LaureatInfoInputs> = async (data) => {
 		const newData = {
 			...data,
 			id,
@@ -101,10 +103,10 @@ export const EtnosportInfo = () => {
 	}
 
 	useEffect(() => {
-		if (vidInfo) {
-			methods.reset({ ...vidInfo })
+		if (laureatInfo) {
+			methods.reset({ ...laureatInfo })
 		}
-	}, [vidInfo])
+	}, [laureatInfo])
 
 	return (
 		<>
@@ -113,7 +115,7 @@ export const EtnosportInfo = () => {
 			</Helmet>
 			<AdminContent className={styles.cultureInfoPage}>
 				<Link
-					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAtmansTraditions}`}
+					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminLaureats}`}
 					className={adminStyles.adminReturnLink}
 				>
 					Возврат к списку лауреатов
@@ -121,11 +123,16 @@ export const EtnosportInfo = () => {
 				<h3>Лауреат</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-						<ControlledInput name='title' label='Лауреат *' maxWidth='1140px' margin='0 0 20px 0' />
+						<ControlledInput
+							name='laureat_name'
+							label='Лауреат *'
+							maxWidth='1140px'
+							margin='0 0 20px 0'
+						/>
 						<ControlledSelect
-							name='year'
+							name='laureat_year'
 							label='Год получения премии *'
-							yearsRange={{ start: 2015, end: 2026 }}
+							selectOptions={laureatInfo?.laureat_year ?? [{ label: 'Не выбрано', value: '0' }]}
 							margin='0 0 20px 0'
 							className={styles.selectVid}
 						/>
@@ -137,16 +144,37 @@ export const EtnosportInfo = () => {
 							className={styles.selectVid}
 						/>
 						<ReactDropzone
-							label='Изображение вида *'
+							label='Фото лауреата *'
 							name='mainphoto'
 							prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
 							accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 							margin='0 0 20px 0'
 							previewVariant='sm-img'
-							imgtype='about_etno'
-							fileImages={vidInfo?.mainphoto}
+							imgtype='laureat'
+							fileImages={laureatInfo?.mainphoto}
+							className={styles.dzArea}
 						/>
-						<QuillEditor name='desc' label='Текст-анонс' $maxWidth='1140px' $heightEditor='105px' />
+						<QuillEditor
+							name='laureat_info'
+							label='Краткая информация'
+							$maxWidth='1140px'
+							$heightEditor='105px'
+							className={styles.textArea}
+						/>
+						<QuillEditor
+							name='laureat_full'
+							label='Полная информация'
+							$maxWidth='1140px'
+							$heightEditor='105px'
+							className={styles.textArea}
+						/>
+						<QuillEditor
+							name='laureat_desc'
+							label='Текст-анонс'
+							$maxWidth='1140px'
+							$heightEditor='105px'
+							className={styles.textArea}
+						/>
 						<ReactDropzone
 							margin='30px 0 20px 0'
 							label='Галерея изображений'
@@ -158,8 +186,9 @@ export const EtnosportInfo = () => {
 							fileImages={localeImages}
 							syncAdd={syncAddImagesHandler}
 							syncEdit={syncEditImagesHandler}
-							imgtype='about_etno'
+							imgtype='laureat_gallery'
 							dzAreaClassName={styles.cultureGalleryController}
+							className={styles.dzArea}
 							multiple
 							customOpenModal={
 								<AddButton
@@ -191,7 +220,7 @@ export const EtnosportInfo = () => {
 					</form>
 				</FormProvider>
 				<Link
-					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminAtmansTraditions}`}
+					to={`/${AdminRoute.AdminAbout}/${AdminRoute.AdminLaureats}`}
 					className={adminStyles.adminReturnLink}
 				>
 					Возврат к списку лауреатов
