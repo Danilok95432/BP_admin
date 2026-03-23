@@ -88,8 +88,12 @@ export const EtnosportInfo = () => {
 	const { isSent, markAsSent } = useIsSent(methods.control)
 
 	const onSubmit: SubmitHandler<VidInfoInputs> = async (data) => {
+		const newData = {
+			...data,
+			id,
+		}
 		try {
-			const res = await saveCultureInfo(transformToFormData(data))
+			const res = await saveCultureInfo(transformToFormData(newData))
 			if (res) markAsSent(true)
 		} catch (e) {
 			console.error(e)

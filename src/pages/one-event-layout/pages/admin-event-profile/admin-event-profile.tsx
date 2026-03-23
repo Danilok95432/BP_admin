@@ -62,10 +62,10 @@ export const AdminEventProfile: FC = () => {
 			time_to: timeFormatTo,
 			description: data.description,
 			conditions: data.conditions,
-			id_event_type:
-				typeof data.event_types_list === 'string'
-					? data.event_types_list
-					: data?.event_types_list[0].value,
+			// id_event_type:
+			// 	typeof data.event_types_list === 'string'
+			// 		? data.event_types_list
+			// 		: data?.event_types_list[0].value,
 			/* id_event_level:
 				typeof data.event_levels_list === 'string'
 					? data.event_levels_list
