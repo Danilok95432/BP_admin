@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useEffect, useState, type FC } from 'react'
 import {
 	type EtnoInputs,
@@ -20,32 +21,37 @@ import { CultureElements } from 'src/pages/community-layout/pages/admin-communit
 import styles from './index.module.scss'
 import { type ImageItemWithText } from 'src/types/photos'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { useGetEtnoEditQuery, useSaveEtnosportMutation } from 'src/store/vids/vids.api'
 import { useGetLaureatsListQuery } from 'src/store/laureats/laureats'
+import { useGetHeaderEditQuery, useSaveHeaderMutation } from 'src/store/pages/pages.api'
 
 export const AdminCommunityCulture: FC = () => {
-	const { data: etnoData } = useGetEtnoEditQuery(null)
+	const { data: headerData } = useGetHeaderEditQuery('laureats')
 	const { data: laureatsList } = useGetLaureatsListQuery(null)
-	const [, setLocaleImages] = useState<ImageItemWithText[]>(etnoData?.photos ?? [])
-	const [saveEtnosport] = useSaveEtnosportMutation()
+	const [, setLocaleImages] = useState<ImageItemWithText[]>(headerData?.page.photoGallery ?? [])
+	const [saveHeader] = useSaveHeaderMutation()
 
 	useEffect(() => {
-		setLocaleImages(etnoData?.photos ?? [])
-	}, [etnoData?.photos])
+		setLocaleImages(headerData?.page.photoGallery ?? [])
+	}, [headerData?.page.photoGallery])
 
 	const methods = useForm<EtnoInputs>({
 		mode: 'onBlur',
 		resolver: yupResolver(etnoSchema),
 		defaultValues: {
-			photos: [],
+			mainphoto: [],
+			photoGallery: [],
 		},
 	})
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
 
 	const onSubmit: SubmitHandler<EtnoInputs> = async (data) => {
+		const newData = {
+			...data,
+			page_type: 'laureats',
+		}
 		try {
-			const res = await saveEtnosport(transformToFormData(data))
+			const res = await saveHeader(transformToFormData(newData))
 			if (res) markAsSent(true)
 		} catch (e) {
 			console.error(e)
@@ -53,10 +59,10 @@ export const AdminCommunityCulture: FC = () => {
 	}
 
 	useEffect(() => {
-		if (etnoData) {
-			methods.reset({ ...etnoData })
+		if (headerData?.page) {
+			methods.reset({ ...headerData.page })
 		}
-	}, [etnoData])
+	}, [headerData?.page])
 
 	return (
 		<>
@@ -67,7 +73,7 @@ export const AdminCommunityCulture: FC = () => {
 			<AdminContent title='Лауреаты' $backgroundColor='#ffffff'>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-						<QuillEditor $heightEditor='310px' name='anonstext' label='Текст-анонс' />
+						<QuillEditor $heightEditor='310px' name='full' label='Текст-анонс' />
 						<ReactDropzone
 							label='Основное изображение *'
 							name='mainphoto'
@@ -75,8 +81,8 @@ export const AdminCommunityCulture: FC = () => {
 							accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 							margin='20px 0 20px 0'
 							previewVariant='sm-img'
-							imgtype='laureat'
-							fileImages={etnoData?.photos}
+							imgtype='pages_laureats'
+							fileImages={headerData?.page.mainphoto}
 							className={styles.dzArea}
 						/>
 						<FlexRow $margin='25px 0 50px 0' $gap='15px'>

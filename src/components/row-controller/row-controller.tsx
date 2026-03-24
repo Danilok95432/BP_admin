@@ -83,14 +83,14 @@ export const RowController: FC<RowControllerProps> = ({
 			</button>
 			<div className={cn(styles.rowControllers, 'row-controllers')}>
 				<button className={styles.hideBtn} onClick={(e) => handleClickHide(e, id)} type='button'>
-					{textOfHidden ?? 'Скрыть'}
+					<p>{textOfHidden ?? 'Скрыть'}</p>
 				</button>
 				<button
 					className={styles.removeBtn}
 					onClick={(e) => handleClickRemove(e, id)}
 					type='button'
 				>
-					Удалить
+					<p>Удалить</p>
 				</button>
 			</div>
 		</div>

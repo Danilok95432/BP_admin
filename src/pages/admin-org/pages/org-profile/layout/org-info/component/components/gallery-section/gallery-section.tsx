@@ -22,7 +22,7 @@ type GallerySectionProps = {
 export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(images ?? [])
 	const { refetch: getNewId } = useGetNewIdImageQuery({
-		imgtype: 'news_photo',
+		imgtype: 'pages_fond_gallery',
 		idItem,
 	})
 
@@ -53,7 +53,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 		openModal(
 			<ImageModal
 				id={newId}
-				imgtype='news_photo'
+				imgtype='pages_fond_gallery'
 				syncAddHandler={syncAddImagesHandler}
 				syncEditHandler={syncEditImagesHandler}
 			/>,
@@ -69,7 +69,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 			margin='30px 0 0 0'
 			previewVariant='img-list'
 			variant='culture'
-			name='photos'
+			name='photoGallery'
 			label='Галерея изображений'
 			className={styles.dropzone}
 			accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
@@ -77,7 +77,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images, idItem }) => {
 			fileImages={localeImages}
 			syncAdd={syncAddImagesHandler}
 			syncEdit={syncEditImagesHandler}
-			imgtype='events_photo'
+			imgtype='pages_fond_gallery'
 			dzAreaClassName={styles.eventGalleryController}
 			multiple
 			customOpenModal={

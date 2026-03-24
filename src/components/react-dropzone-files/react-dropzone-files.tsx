@@ -16,6 +16,7 @@ import { UploadFileSvg } from 'src/UI/icons/uploadFileSVG'
 import styles from './index.module.scss'
 import {
 	useDeleteFileByIdMutation,
+	useGetNewIdFileQuery,
 	useUploadFilesMutation,
 } from 'src/store/uploadFiles/uploadFiles.api'
 import { useParams } from 'react-router-dom'
@@ -59,6 +60,7 @@ export const ReactDropzoneFiles: FC<ReactDropzoneProps> = ({
 }) => {
 	const [currentFiles, setCurrentFiles] = useState<FileItem[]>(files ?? [])
 	const [fileIds, setFileIds] = useState<string[]>([])
+	const [newId, setNewId] = useState<string | null>(null)
 
 	const {
 		register,
@@ -71,13 +73,29 @@ export const ReactDropzoneFiles: FC<ReactDropzoneProps> = ({
 
 	const { id = '' } = useParams()
 
+	const { data: newIdData, refetch: getNewId } = useGetNewIdFileQuery(
+		{ filetype: fileType, idItem: '' },
+		{ skip: id !== '' },
+	)
+	const idItem = newIdData?.id ?? newId
+
 	const uploadFile = useCallback(
 		async (file: File) => {
 			try {
 				const formData = new FormData()
 				formData.append('itemfile', file)
 				formData.append('filetype', fileType)
-				formData.append('id_item', id)
+
+				if (id !== '') {
+					formData.append('id_item', id)
+				} else if (idItem) {
+					formData.append('id', idItem)
+				} else {
+					const result = await getNewId().unwrap()
+					const newIdValue = result.id
+					setNewId(newIdValue)
+					formData.append('id', newIdValue)
+				}
 
 				const response = await uploadFiles(formData).unwrap()
 				if (response.status === 'ok') {
@@ -92,7 +110,7 @@ export const ReactDropzoneFiles: FC<ReactDropzoneProps> = ({
 				return null
 			}
 		},
-		[uploadFiles, fileType],
+		[uploadFiles, fileType, id, idItem, getNewId],
 	)
 
 	const onDrop = useCallback(

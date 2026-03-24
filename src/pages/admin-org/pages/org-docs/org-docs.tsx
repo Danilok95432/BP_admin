@@ -60,7 +60,7 @@ export const OrgDocs: FC<DocsSectionProps> = ({ files = [] }) => {
 							}}
 							maxFiles={7}
 							files={files}
-							fileType='event'
+							fileType='pages_fond'
 							multiple
 							customUploadBtn={<AddButton>Добавить документ</AddButton>}
 						/>

@@ -24,7 +24,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 		<AdminSection isBlock={false} className={styles.infoSection}>
 			<div className={styles.inputWrapper}>
 				<ControlledInput
-					name='shortTitle'
+					name='title'
 					label='Краткое название фонда *'
 					placeholder='Краткое название фонда'
 					margin='0 0 20px 0'
@@ -37,7 +37,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			<FlexRow className={styles.adminRow}>
 				<div className={styles.inputWrapper}>
 					<ControlledInput
-						name='title'
+						name='text1'
 						label='Полное название фонда *'
 						placeholder='Полное название фонда'
 						maxWidth='1140px'
@@ -56,12 +56,12 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			</FlexRow>
 			<ReactDropzone
 				label='Логотип *'
-				name='photo'
+				name='mainphoto'
 				prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				margin='0 0 20px'
 				previewVariant='sm-img'
-				imgtype='org'
+				imgtype='pages_fond'
 				fileImages={photo}
 				className={styles.dropzone}
 			/>
@@ -109,7 +109,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			<FlexRow className={styles.adminRow}>
 				<div className={styles.inputWrapper}>
 					<ControlledInput
-						name='urAdress'
+						name='text2'
 						label='Юридический адрес *'
 						placeholder='Юридический адрес'
 						maxWidth='1140px'
@@ -130,7 +130,7 @@ export const MainSection: FC<MainSectionProps> = ({ photo, photos, activated = f
 			</FlexRow>
 			<div className={styles.inputWrapper}>
 				<ControlledInput
-					name='factAdress'
+					name='text3'
 					label='Фактический адрес *'
 					placeholder='Фактический адрес'
 					margin='0 0 20px 0'

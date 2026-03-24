@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type FC, useEffect, useState } from 'react'
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import {
@@ -13,22 +14,21 @@ import { AdminControllers } from 'src/components/admin-controllers/admin-control
 import { TitleSection } from 'src/pages/community-layout/pages/admin-community-about/components/title-section/title-section'
 import { GallerySection } from 'src/pages/community-layout/pages/admin-community-about/components/gallery-section/gallery-section'
 import { ArticleSection } from 'src/pages/community-layout/pages/admin-community-about/components/article-section/article-section'
-import { booleanToNumberString, transformToFormData } from 'src/helpers/utils'
+import { transformToFormData } from 'src/helpers/utils'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { useGetAboutEditQuery, useSaveAboutMutation } from 'src/store/vids/vids.api'
+import { useGetHeaderEditQuery, useSaveHeaderMutation } from 'src/store/pages/pages.api'
 
 export const AdminCommunityAbout: FC = () => {
-	const { data: aboutCommunityData } = useGetAboutEditQuery(null)
-	const [saveAboutCommunity] = useSaveAboutMutation()
+	const { data: headerData } = useGetHeaderEditQuery('premia')
+	const [saveHeader] = useSaveHeaderMutation()
 	const [, setAction] = useState<'apply' | 'save'>('apply')
 
 	const methods = useForm<CommunityInputs>({
 		mode: 'onBlur',
 		resolver: yupResolver(communitySchema),
 		defaultValues: {
-			logo: [],
+			mainphoto: [],
 			photoGallery: [],
-			gallerySection: false,
 		},
 	})
 	const { isSent, markAsSent } = useIsSent(methods.control)
@@ -37,9 +37,9 @@ export const AdminCommunityAbout: FC = () => {
 		try {
 			const serverData = {
 				...data,
-				caption_show: booleanToNumberString(data.caption_show),
+				page_type: 'premia',
 			}
-			const res = await saveAboutCommunity(transformToFormData(serverData))
+			const res = await saveHeader(transformToFormData(serverData))
 			if (res) markAsSent(true)
 		} catch (e) {
 			console.error(e)
@@ -47,11 +47,10 @@ export const AdminCommunityAbout: FC = () => {
 	}
 
 	useEffect(() => {
-		if (aboutCommunityData) {
-			const { caption, mainDescs, descs, caption_show: captionShow } = aboutCommunityData
-			methods.reset({ caption, mainDescs, descs, articleSection: true, caption_show: captionShow })
+		if (headerData?.page) {
+			methods.reset({ ...headerData?.page })
 		}
-	}, [aboutCommunityData])
+	}, [headerData?.page])
 
 	return (
 		<>
@@ -61,8 +60,8 @@ export const AdminCommunityAbout: FC = () => {
 			<AdminContent title='Детали и история' link='https://pab.npotau.ru/about'>
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-						<TitleSection logo={aboutCommunityData?.logo} />
-						<GallerySection images={aboutCommunityData?.photoGallery} />
+						<TitleSection logo={headerData?.page?.mainphoto} />
+						<GallerySection images={headerData?.page?.photoGallery} />
 						<ArticleSection />
 						<AdminControllers isSent={isSent} actionHandler={setAction} />
 					</form>

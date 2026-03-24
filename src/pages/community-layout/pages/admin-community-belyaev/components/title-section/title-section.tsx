@@ -14,16 +14,16 @@ export const TitleSection: FC<TitleSectionProps> = ({ logo }) => {
 		<AdminSection>
 			<ReactDropzone
 				label='Фотография'
-				name='logo'
+				name='mainphoto'
 				prompt='PNG, JPG, JPEG. 522х346, не более 3 Мб'
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				margin='0 0 20px 0'
 				previewVariant='sm-img'
-				imgtype='about_general'
+				imgtype='pages_belyaev'
 				fileImages={logo}
 			/>
 
-			<QuillEditor name='mainDescs' label='Текст-анонс*' $heightEditor='200px' />
+			<QuillEditor name='full' label='Текст-анонс*' $heightEditor='200px' />
 		</AdminSection>
 	)
 }

@@ -1,4 +1,4 @@
-.eventProfilePage {
+div.eventProfilePage {
   padding: 0 30px 55px;
   min-height: max-content;
 	.title {
@@ -9,6 +9,11 @@
 	}
 	section:not(:last-child) {
 		margin-bottom: 30px;
+	}
+	.dzArea {
+		label {
+			font-size: 14px;
+		}
 	}
 }
 .eventProfileForm {

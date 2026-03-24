@@ -1,8 +1,5 @@
-import { useState, type FC } from 'react'
-import {
-	type EventProfileInputs,
-	eventProfileSchema,
-} from 'src/pages/one-event-layout/pages/admin-event-profile/schema'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { useEffect, useState, type FC } from 'react'
 
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,22 +11,40 @@ import { FlexRow } from 'src/components/flex-row/flex-row'
 import styles from './index.module.scss'
 import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
+import { useGetHeaderEditQuery, useSaveHeaderMutation } from 'src/store/pages/pages.api'
+import { transformToFormData } from 'src/helpers/utils'
+import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
+import { type ConcursInputs, concursSchema } from './schema'
 
 export const AdminAboutContest: FC = () => {
-	const methods = useForm<EventProfileInputs>({
+	const { data: headerData } = useGetHeaderEditQuery('concurs')
+	const [saveHeader] = useSaveHeaderMutation()
+	const methods = useForm<ConcursInputs>({
 		mode: 'onBlur',
-		resolver: yupResolver(eventProfileSchema),
-		defaultValues: {
-			main: false,
-			hidden: false,
-		},
+		resolver: yupResolver(concursSchema),
 	})
 
 	const [, setAction] = useState<'apply' | 'save'>('apply')
+	const { isSent, markAsSent } = useIsSent(methods.control)
 
-	const onSubmit: SubmitHandler<EventProfileInputs> = async (data) => {
-		console.log(data)
+	const onSubmit: SubmitHandler<ConcursInputs> = async (data) => {
+		const newData = {
+			...data,
+			page_type: 'concurs',
+		}
+		try {
+			const res = await saveHeader(transformToFormData(newData))
+			if (res) markAsSent(true)
+		} catch (e) {
+			console.error(e)
+		}
 	}
+
+	useEffect(() => {
+		if (headerData?.page) {
+			methods.reset({ ...headerData?.page })
+		}
+	}, [headerData?.page])
 
 	return (
 		<AdminContent className={styles.eventProfilePage} $backgroundColor='#ffffff'>
@@ -42,26 +57,31 @@ export const AdminAboutContest: FC = () => {
 					autoComplete='off'
 				>
 					<ControlledInput
-						name='contest-info'
+						name='short'
 						label='О конкурсе *'
 						margin=' 0 0 20px 0'
 						isTextarea
 						height='200px'
-						bigFont
 					/>
 					<ReactDropzone
 						label='Основное изображение'
-						name='contest-logo'
+						name='mainphoto'
 						prompt='PNG, JPG, JPEG. Изображение должно быть круглым или квадратным, не более 3 Мб'
 						accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 						margin='20px 0 20px 0'
 						previewVariant='sm-img'
-						imgtype='contest-logo'
-						fileImages={[]}
+						imgtype='pages_concurs'
+						fileImages={headerData?.page.mainphoto}
+						className={styles.dzArea}
 					/>
 					<FlexRow $margin='0 0 40px 0' $maxWidth='1140px' $justifyContent='space-between'>
 						<FlexRow>
-							<AdminButton as='button' type='submit' onClick={() => setAction('save')}>
+							<AdminButton
+								as='button'
+								type='submit'
+								onClick={() => setAction('save')}
+								$variant={isSent ? 'sent' : 'primary'}
+							>
 								Сохранить
 							</AdminButton>
 						</FlexRow>

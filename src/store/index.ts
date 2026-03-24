@@ -24,6 +24,7 @@ import { gamesApi } from './games/games.api'
 import { vidsApi } from './vids/vids.api'
 import { statisticApi } from './statistic/statistic.api'
 import { laureatsApi } from './laureats/laureats'
+import { pagesApi } from './pages/pages.api'
 
 export const store = configureStore({
 	reducer: {
@@ -47,6 +48,7 @@ export const store = configureStore({
 		[vidsApi.reducerPath]: vidsApi.reducer,
 		[statisticApi.reducerPath]: statisticApi.reducer,
 		[laureatsApi.reducerPath]: laureatsApi.reducer,
+		[pagesApi.reducerPath]: pagesApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -67,6 +69,7 @@ export const store = configureStore({
 			vidsApi.middleware,
 			statisticApi.middleware,
 			laureatsApi.middleware,
+			pagesApi.middleware,
 			rtkQueryErrorLogger,
 		),
 })

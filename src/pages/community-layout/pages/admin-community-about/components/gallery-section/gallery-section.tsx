@@ -16,7 +16,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images }) => {
 	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(images ?? [])
 
 	const { refetch: getNewId } = useGetNewIdImageQuery({
-		imgtype: 'about_general_photo',
+		imgtype: 'pages_premia_gallery',
 		idItem: '',
 	})
 	const addImage = async () => {
@@ -45,7 +45,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images }) => {
 		openModal(
 			<ImageModal
 				id={newId}
-				imgtype='about_general_photo'
+				imgtype='pages_premia_gallery'
 				syncAddHandler={syncAddImagesHandler}
 				syncEditHandler={syncEditImagesHandler}
 			/>,
@@ -63,7 +63,7 @@ export const GallerySection: FC<GallerySectionProps> = ({ images }) => {
 				name='photoGallery'
 				accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 				maxFiles={10}
-				imgtype='about_general_photo'
+				imgtype='pages_premia_gallery'
 				fileImages={localeImages}
 				syncAdd={syncAddImagesHandler}
 				syncEdit={syncEditImagesHandler}

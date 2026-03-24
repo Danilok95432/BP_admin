@@ -38,7 +38,7 @@ export const AboutDocs: FC<DocsSectionProps> = ({ files = [] }) => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} noValidate autoComplete='off'>
 					<AdminSection
-						titleText='Документы фонда'
+						titleText='Документы премии'
 						sectionName='documents'
 						additionalNodeForHead={
 							<SwitchedRadioBtns
@@ -60,7 +60,7 @@ export const AboutDocs: FC<DocsSectionProps> = ({ files = [] }) => {
 							}}
 							maxFiles={7}
 							files={files}
-							fileType='event'
+							fileType='pages_premia'
 							multiple
 							customUploadBtn={<AddButton>Добавить документ</AddButton>}
 						/>

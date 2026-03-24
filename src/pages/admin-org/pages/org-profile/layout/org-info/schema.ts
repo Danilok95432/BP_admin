@@ -1,21 +1,17 @@
+import { type ImageItemWithText } from 'src/types/photos'
 import * as yup from 'yup'
 
 export type OrgProfileInputs = {
-	shortTitle: string
 	title: string
-	marka: string
-	region: string
-	urAdrees: string
-	factAdress: string
-	mailAdress: string
+	text1?: string
+	text2?: string
+	text3?: string
+	short?: string
+	full?: string
+	mainphoto?: ImageItemWithText[]
+	photoGallery?: ImageItemWithText[]
 }
 
 export const orgProfileSchema = yup.object().shape({
-	shortTitle: yup.string().required('Введите название'),
 	title: yup.string().required('Введите название'),
-	marka: yup.string().required('Введите название'),
-	region: yup.string().required('Введите название'),
-	urAdrees: yup.string().required('Введите название'),
-	factAdress: yup.string().required('Введите название'),
-	mailAdress: yup.string().required('Введите название'),
 })
