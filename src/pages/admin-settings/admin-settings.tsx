@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { defaultMainBlocksValues, type SettingsInputs } from 'src/pages/admin-settings/schema'
 
 import { Helmet } from 'react-helmet-async'
@@ -13,47 +13,68 @@ import { MainBlocksSection } from 'src/pages/admin-settings/components/main-bloc
 
 import styles from './index.module.scss'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { useNavigate } from 'react-router-dom'
-import { CustomDisclaimer } from 'src/components/custom-disclaimer/custom-disclaimer'
+import { ContactsSection } from './components/contacts-section/contacts-section'
+import { SettingsSection } from './components/settings-section/settings-section'
+import {
+	useGetSettingsQuery,
+	useSaveSettingsMutation,
+} from 'src/store/site-settings/site-settings.api'
+import { booleanToNumberString } from 'src/helpers/utils'
 
 export const AdminSettings: FC = () => {
+	const { data: settingsData } = useGetSettingsQuery(null)
+	const [saveSettings] = useSaveSettingsMutation()
 	const methods = useForm<SettingsInputs>({
 		mode: 'onBlur',
 		defaultValues: defaultMainBlocksValues,
 	})
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
-	const [action, setAction] = useState<'apply' | 'save'>('apply')
-	const navigate = useNavigate()
+	const [, setAction] = useState<'apply' | 'save'>('apply')
 
-	const onSubmit: SubmitHandler<SettingsInputs> = (data) => {
-		console.log(data)
-		markAsSent(true)
-		if (action === 'save') {
-			navigate(`/${AdminRoute.AdminHome}`)
+	const onSubmit: SubmitHandler<SettingsInputs> = async (data) => {
+		const formData = new FormData()
+		formData.append('isShowPromo', booleanToNumberString(data.isShowPromo))
+		formData.append('isShowBtnRequest', booleanToNumberString(data.isShowBtnRequest))
+		formData.append('isShowBtnBel', booleanToNumberString(data.isShowBtnBel))
+		formData.append('isShowBtnRasp', booleanToNumberString(data.isShowBtnRasp))
+		formData.append('isShowNews', booleanToNumberString(data.isShowNews))
+		formData.append('isShowHistory', booleanToNumberString(data.isShowHistory))
+		formData.append('isShowInfo', booleanToNumberString(data.isShowInfo))
+		formData.append('isShowVideos', booleanToNumberString(data.isShowVideos))
+		formData.append('isShowEvents', booleanToNumberString(data.isShowEvents))
+		formData.append('isShowPartners', booleanToNumberString(data.isShowPartners))
+		formData.append('isShowFaq', booleanToNumberString(data.isShowFaq))
+		formData.append('phone', data?.phone ?? '')
+		formData.append('email', data?.email ?? '')
+		formData.append('vk', data?.vk ?? '')
+		formData.append('title', data?.title ?? '')
+		try {
+			const res = await saveSettings(formData)
+			if (res) markAsSent(true)
+		} catch (e) {
+			console.error(e)
 		}
 	}
+
+	useEffect(() => {
+		if (settingsData) {
+			methods.reset({ ...settingsData })
+		}
+	}, [settingsData])
+
 	return (
 		<>
 			<Helmet>
-				<title>Настройки сайта</title>
+				<title>Общие настройки</title>
 			</Helmet>
-			<h1>Настройки сайта</h1>
+			<h1>Общие настройки</h1>
 			<AdminContent
 				className={styles.settingsContent}
 				$backgroundColor='#ffffff'
-				link='#'
 				$padding='25px 30px 60px 40px'
 			>
 				{/* <PromoTable /> */}
-				<CustomDisclaimer className={styles.disc}>
-					<p>
-						Внимание! В этом разделе настраивается посадочная страница актуального события. Ваш
-						тарифный план предусматривает только один лэндинг одного события в момент времени. Для
-						того, чтобы получить возможность публиковать информацию сразу о нескольких событиях,
-						свяжитесь с нашим комерчепским отделом.
-					</p>
-				</CustomDisclaimer>
 				<FormProvider {...methods}>
 					<form
 						className={styles.mainBlocksForm}
@@ -61,6 +82,8 @@ export const AdminSettings: FC = () => {
 						noValidate
 					>
 						<MainBlocksSection />
+						<ContactsSection />
+						<SettingsSection />
 						<AdminControllers
 							outLink={AdminRoute.AdminHome}
 							isSent={isSent}

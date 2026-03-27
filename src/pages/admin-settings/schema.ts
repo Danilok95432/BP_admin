@@ -1,19 +1,31 @@
 export type SettingsInputs = {
-	isShowObjects: boolean
-	isShowEvents: boolean
-	isShowMap: boolean
+	isShowPromo: boolean
+	isShowBtnRequest: boolean
+	isShowBtnBel: boolean
+	isShowBtnRasp: boolean
 	isShowNews: boolean
+	isShowHistory: boolean
+	isShowInfo: boolean
 	isShowVideos: boolean
+	isShowEvents: boolean
 	isShowPartners: boolean
 	isShowFaq: boolean
+	phone: string
+	email: string
+	vk: string
+	title: string
 }
 
 export const defaultMainBlocksValues = {
-	isShowObjects: false,
-	isShowEvents: false,
-	isShowMap: false,
+	isShowPromo: false,
+	isShowBtnRequest: false,
+	isShowBtnBel: false,
+	isShowBtnRasp: false,
 	isShowNews: false,
+	isShowHistory: false,
+	isShowInfo: false,
 	isShowVideos: false,
+	isShowEvents: false,
 	isShowPartners: false,
 	isShowFaq: false,
 }

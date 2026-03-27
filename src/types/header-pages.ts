@@ -1,4 +1,5 @@
 import { type ImageItemWithText } from './photos'
+import { type SelOption } from './select'
 
 export type HeaderPageResponse = {
 	page: HeaderPages
@@ -16,4 +17,19 @@ export type HeaderPages = {
 	text3: string
 	photoGallery: ImageItemWithText[]
 	mainphoto: ImageItemWithText[]
+}
+
+export type ContactsInfo = {
+	bank: string
+	bik: string
+	fioDir: string
+	fullName: string
+	inn: string
+	korChet: string
+	kpp: string
+	ogrn: string
+	phone: string
+	positionDir: SelOption[]
+	rasChet: string
+	title: string
 }

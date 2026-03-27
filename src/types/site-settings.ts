@@ -10,3 +10,21 @@ export type PromoBlock = {
 	promoDesktopImage: FileWithPreview[]
 	promoMobileImage: FileWithPreview[]
 }
+
+export type SiteSettingsResponse = {
+	isShowPromo: boolean
+	isShowBtnRequest: boolean
+	isShowBtnBel: boolean
+	isShowBtnRasp: boolean
+	isShowNews: boolean
+	isShowHistory: boolean
+	isShowInfo: boolean
+	isShowVideos: boolean
+	isShowEvents: boolean
+	isShowPartners: boolean
+	isShowFaq: boolean
+	phone: string
+	email: string
+	vk: string
+	title: string
+}

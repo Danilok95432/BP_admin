@@ -6,8 +6,14 @@ import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
 import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
+import { type SelOption } from 'src/types/select'
+import { type FC } from 'react'
 
-export const OrgAdditionalInfoSection = () => {
+type OrgProps = {
+	dirOptions?: SelOption[]
+}
+
+export const OrgAdditionalInfoSection: FC<OrgProps> = ({ dirOptions }) => {
 	return (
 		<AdminSection isBlock={false} className={styles.infoSection}>
 			<div className={styles.inputWrapper}>
@@ -32,22 +38,22 @@ export const OrgAdditionalInfoSection = () => {
 				</div>
 			</GridRow>
 			<div className={styles.inputWrapper}>
-				<ControlledInput name='rachet' label='Расчетный счет *' margin='0 0 20px 0' />
+				<ControlledInput name='rasChet' label='Расчетный счет *' margin='0 0 20px 0' />
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
 			<div className={styles.inputWrapper}>
-				<ControlledInput name='korchet' label='Корсчет счет *' margin='0 0 20px 0' />
+				<ControlledInput name='korChet' label='Корсчет счет *' margin='0 0 20px 0' />
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
 					<InfoIconSvg />
 				</Tooltip>
 			</div>
 			<div className={styles.inputWrapper}>
 				<ControlledSelect
-					name='boss'
+					name='positionDir'
 					label='Должность руководителя *'
-					selectOptions={[{ label: 'Генеральный директор', value: '0' }]}
+					selectOptions={dirOptions ?? [{ label: 'Генеральный директор', value: '0' }]}
 					margin='0 0 20px 0'
 				/>
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
@@ -56,7 +62,7 @@ export const OrgAdditionalInfoSection = () => {
 			</div>
 			<div className={styles.inputWrapper}>
 				<ControlledInput
-					name='fio'
+					name='fioDir'
 					label='Фамилия, имя, отчество руководителя *'
 					margin='0 0 20px 0'
 				/>

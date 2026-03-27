@@ -36,8 +36,6 @@ export const AdminEventRules: FC = () => {
 		eventInfoFormData.append('id', eventId)
 		eventInfoFormData.append('rule_name', data.rule_name)
 		eventInfoFormData.append('rule_text', data.rule_text)
-		eventInfoFormData.append('politic_name', data.politic_name)
-		eventInfoFormData.append('politic_text', data.politic_text)
 		const res = await saveRulesInfo(eventInfoFormData)
 		if (res) {
 			markAsSent(true)

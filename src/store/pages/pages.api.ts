@@ -3,11 +3,11 @@ import { type FieldValues } from 'react-hook-form'
 
 import { ReducerPath } from 'src/helpers/consts'
 import { baseQueryWithReauth } from 'src/helpers/base-query'
-import { type HeaderPageResponse } from 'src/types/header-pages'
+import { type ContactsInfo, type HeaderPageResponse } from 'src/types/header-pages'
 
 export const pagesApi = createApi({
 	reducerPath: ReducerPath.Pages,
-	tagTypes: ['Header', 'HeaderInfo'],
+	tagTypes: ['Header', 'HeaderInfo', 'Fond'],
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
 		getHeaderEdit: build.query<HeaderPageResponse, string>({
@@ -27,7 +27,29 @@ export const pagesApi = createApi({
 			}),
 			invalidatesTags: ['Header'],
 		}),
+		getFondDetails: build.query<ContactsInfo, string>({
+			query: (pageType) => ({
+				url: `/contacts/edit`,
+				params: {
+					page_type: pageType,
+				},
+			}),
+			providesTags: ['Fond'],
+		}),
+		saveFondDetails: build.mutation<null, FieldValues>({
+			query: (formData) => ({
+				url: `/contacts/save`,
+				method: 'POST',
+				body: formData,
+			}),
+			invalidatesTags: ['Fond'],
+		}),
 	}),
 })
 
-export const { useGetHeaderEditQuery, useSaveHeaderMutation } = pagesApi
+export const {
+	useGetHeaderEditQuery,
+	useSaveHeaderMutation,
+	useGetFondDetailsQuery,
+	useSaveFondDetailsMutation,
+} = pagesApi

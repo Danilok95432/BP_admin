@@ -12,7 +12,7 @@ export const OrgMainInfoSection = () => {
 		<AdminSection isBlock={false} className={styles.infoSection}>
 			<div className={styles.inputWrapper}>
 				<ControlledInput
-					name='title'
+					name='fullName'
 					label='Полное наименование юридического лица *'
 					placeholder='Форма собственности вводится полностью, без сокращений'
 					margin='0 0 20px 0'

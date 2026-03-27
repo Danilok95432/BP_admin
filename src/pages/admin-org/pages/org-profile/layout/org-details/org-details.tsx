@@ -2,7 +2,7 @@ import { type OrgDetailsInputs, orgDetailsSchema } from './schema'
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Container } from 'src/UI/Container/Container'
 import { AdminControllers } from 'src/components/admin-controllers/admin-controllers'
@@ -13,9 +13,12 @@ import { FlexRow } from 'src/components/flex-row/flex-row'
 import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 
 import styles from './index.module.scss'
+import { useGetFondDetailsQuery, useSaveFondDetailsMutation } from 'src/store/pages/pages.api'
 
 export const OrgDetails = () => {
 	const [, setAction] = useState<'apply' | 'save'>('apply')
+	const { data: reqData } = useGetFondDetailsQuery('')
+	const [saveDetails] = useSaveFondDetailsMutation()
 	const passStatus = true
 
 	const methods = useForm<OrgDetailsInputs>({
@@ -23,10 +26,41 @@ export const OrgDetails = () => {
 		resolver: yupResolver(orgDetailsSchema),
 	})
 
-	const { isSent } = useIsSent(methods.control)
+	const { isSent, markAsSent } = useIsSent(methods.control)
 	const onSubmit: SubmitHandler<OrgDetailsInputs> = async (data) => {
-		console.log(data)
+		const formData = new FormData()
+		formData.append('bank', data?.bank ?? '')
+		formData.append('bik', data?.bik ?? '')
+		formData.append('fioDir', data?.fioDir ?? '')
+		formData.append('fullName', data?.fullName ?? '')
+		formData.append('inn', data?.inn ?? '')
+		formData.append('korChet', data?.korChet ?? '')
+		formData.append('kpp', data?.kpp ?? '')
+		formData.append('ogrn', data?.ogrn ?? '')
+		formData.append('phone', data?.phone ?? '')
+		formData.append('rasChet', data?.rasChet ?? '')
+		formData.append('title', data?.title ?? '')
+		formData.append(
+			'positionDir',
+			typeof data.positionDir === 'string'
+				? data.positionDir
+				: data.positionDir
+					? data.positionDir[0].value
+					: '0',
+		)
+		try {
+			const res = await saveDetails(formData)
+			if (res) markAsSent(true)
+		} catch (e) {
+			console.error(e)
+		}
 	}
+
+	useEffect(() => {
+		if (reqData) {
+			methods.reset({ ...reqData })
+		}
+	}, [reqData])
 
 	return (
 		<div className={styles.onePartnerPage}>
@@ -36,7 +70,7 @@ export const OrgDetails = () => {
 						{passStatus ? (
 							<>
 								<OrgMainInfoSection />
-								<OrgAdditionalInfoSection />
+								<OrgAdditionalInfoSection dirOptions={reqData?.positionDir} />
 								<AdminControllers variant='5' isSent={isSent} actionHandler={setAction} />
 							</>
 						) : (
