@@ -20,6 +20,7 @@ import {
 	useSaveSettingsMutation,
 } from 'src/store/site-settings/site-settings.api'
 import { booleanToNumberString } from 'src/helpers/utils'
+import { FooterSection } from './components/footer-section/footer-section'
 
 export const AdminSettings: FC = () => {
 	const { data: settingsData } = useGetSettingsQuery(null)
@@ -49,6 +50,7 @@ export const AdminSettings: FC = () => {
 		formData.append('email', data?.email ?? '')
 		formData.append('vk', data?.vk ?? '')
 		formData.append('title', data?.title ?? '')
+		formData.append('copyright', data?.copyright ?? '')
 		try {
 			const res = await saveSettings(formData)
 			if (res) markAsSent(true)
@@ -83,6 +85,7 @@ export const AdminSettings: FC = () => {
 					>
 						<MainBlocksSection />
 						<ContactsSection />
+						<FooterSection />
 						<SettingsSection />
 						<AdminControllers
 							outLink={AdminRoute.AdminHome}

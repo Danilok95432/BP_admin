@@ -14,6 +14,7 @@ export type SettingsInputs = {
 	email: string
 	vk: string
 	title: string
+	copyright: string
 }
 
 export const defaultMainBlocksValues = {
