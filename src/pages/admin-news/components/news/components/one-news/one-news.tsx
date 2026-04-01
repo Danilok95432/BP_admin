@@ -65,8 +65,7 @@ export const OneNews = () => {
 			relatedNews: data.relatedNews,
 			main: booleanToNumberString(data.main),
 			hidden: booleanToNumberString(data.hidden),
-			id_event:
-				typeof data.events === 'string' ? data.events : data.events ? data.events[0].value : '0',
+			id_event: '1',
 			vidslist:
 				typeof data.vidslist === 'string' ? data.vidslist : data.vidslist ? selectedObj : '0',
 		}

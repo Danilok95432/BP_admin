@@ -13,7 +13,6 @@ import adminStyles from 'src/routes/admin-layout/index.module.scss'
 import styles from './index.module.scss'
 import { GallerySection } from './components/gallery-section/gallery-section'
 import { useParams } from 'react-router-dom'
-import { ControlledSelect } from 'src/components/controlled-select/controlled-select'
 
 type MainSectionProps = {
 	galleryOptions?: SelOption[]
@@ -23,13 +22,7 @@ type MainSectionProps = {
 	chainedVids?: MultiSelOption[]
 }
 
-export const MainSection: FC<MainSectionProps> = ({
-	galleryOptions,
-	photo,
-	photos,
-	chainedVids,
-	chainedEvent,
-}) => {
+export const MainSection: FC<MainSectionProps> = ({ galleryOptions, photo, photos }) => {
 	const { id = '0' } = useParams()
 	return (
 		<AdminSection className={styles.mainSection} isBlock={false}>
@@ -51,12 +44,12 @@ export const MainSection: FC<MainSectionProps> = ({
 					timeFormat='HH:mm'
 				/>
 			</GridRow>
-			<ControlledSelect
+			{/* <ControlledSelect
 				name='events'
 				label='Связанное событие'
 				selectOptions={chainedEvent ?? [{ label: 'Выберите событие', value: '0' }]}
 				margin='0 0 20px 0'
-			/>
+			/> */}
 			<ControlledInput
 				name='short'
 				label='Анонс новости'

@@ -51,7 +51,7 @@ export const CultureElements: FC<CultureElementsProps> = ({ laureats = [] }) => 
 						id={laureatEl.id}
 						hideHandler={rowHideHandler}
 						removeHandler={rowDeleteHandler}
-						textOfHidden='Скрыть направление'
+						textOfHidden='Скрыть лауреата'
 						key='3'
 					/>,
 				],
