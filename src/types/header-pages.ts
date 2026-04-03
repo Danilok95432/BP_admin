@@ -1,3 +1,4 @@
+import { type FileItem } from './files'
 import { type ImageItemWithText } from './photos'
 import { type SelOption } from './select'
 
@@ -11,7 +12,7 @@ export type HeaderPages = {
 	short: string
 	full: string
 	full2: string
-	documents: string
+	documents: FileItem[]
 	text1: string
 	text2: string
 	text3: string

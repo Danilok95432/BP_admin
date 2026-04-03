@@ -14,12 +14,14 @@ import {
 	type EventContentInputs,
 	eventContentSchema,
 } from 'src/pages/one-event-layout/pages/admin-event-content/layout/event-content/schema'
+import { useGetHeaderEditQuery } from 'src/store/pages/pages.api'
 
 type DocsSectionProps = {
 	files?: FileItem[]
 }
 
 export const OrgDocs: FC<DocsSectionProps> = ({ files = [] }) => {
+	const { data: headerData } = useGetHeaderEditQuery('fond')
 	const methods = useForm<EventContentInputs>({
 		mode: 'onBlur',
 		resolver: yupResolver(eventContentSchema),
@@ -59,7 +61,7 @@ export const OrgDocs: FC<DocsSectionProps> = ({ files = [] }) => {
 								],
 							}}
 							maxFiles={7}
-							files={files}
+							files={headerData?.page.documents}
 							fileType='pages_fond'
 							multiple
 							customUploadBtn={<AddButton>Добавить документ</AddButton>}
