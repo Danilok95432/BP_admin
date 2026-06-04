@@ -45,6 +45,7 @@ type ReactDropzoneProps = {
 	text?: string
 	isProgram?: boolean
 	isPromoModal?: boolean
+	isSpecial?: boolean
 }
 
 export const ReactDropzone: FC<ReactDropzoneProps> = ({
@@ -67,6 +68,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 	imgtype = 'news',
 	imageIdFieldName,
 	isPromoModal = false,
+	isSpecial = false,
 	fileImages = [],
 	imgEditId = '',
 	syncAdd,
@@ -235,6 +237,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 					syncEdit={syncEdit}
 					uploadBtn={currentFiles.length < maxFiles ? dropzoneArea : null}
 					isPromoModal={isPromoModal}
+					isSpecial={isSpecial}
 				/>
 				{errors[name] && (
 					<p className={styles.warningMessage}>
@@ -265,6 +268,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 				syncEdit={syncEdit}
 				removeHandler={removeFile}
 				isPromoModal={isPromoModal}
+				isSpecial={isSpecial}
 			/>
 			{(currentFiles.length < maxFiles || currentFiles.some((file) => !file.thumbnail)) && (
 				<div

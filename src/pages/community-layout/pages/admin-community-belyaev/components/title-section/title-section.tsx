@@ -21,6 +21,7 @@ export const TitleSection: FC<TitleSectionProps> = ({ logo }) => {
 				previewVariant='sm-img'
 				imgtype='pages_belyaev'
 				fileImages={logo}
+				isSpecial={true}
 			/>
 
 			<QuillEditor name='full' label='Текст-анонс*' $heightEditor='200px' />

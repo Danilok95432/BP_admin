@@ -10,15 +10,30 @@ import styles from './index.module.scss'
 import { Tooltip } from 'src/components/tooltip/Tooltip'
 import { InfoIconSvg } from 'src/UI/icons/infoIcon'
 import { QuillEditor } from 'src/components/quill-editor/quill-editor'
+import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 
 type DescSectionProps = {
 	ageList?: SelOption[]
 	locationsList?: SelOption[]
+	eventTypesList?: SelOption[]
 }
 
-export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) => {
+export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList, eventTypesList }) => {
 	return (
 		<AdminSection isBlock={false}>
+			<div className={styles.inputWrapper}>
+				<ControlledInput
+					name='count_requests'
+					label='Количество поданных заявок на участие в номинации'
+					placeholder='Количество поданных заявок на участие в номинации'
+					margin='0 0 20px 0'
+					className={styles.inputCountReq}
+				/>
+
+				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>
+					<InfoIconSvg />
+				</Tooltip>
+			</div>
 			<div className={styles.inputWrapperTextArea}>
 				<QuillEditor
 					name='description'
@@ -78,12 +93,9 @@ export const DescSection: FC<DescSectionProps> = ({ ageList, locationsList }) =>
 			<div className={styles.inputWrapper}>
 				<ControlledSelect
 					label='Тип номинации *'
-					name='locations_list'
+					name='event_types_list'
 					margin='0 0 25px 0'
-					selectOptions={[
-						{ label: 'Открытая', value: '1' },
-						{ label: 'Закрытая', value: '2' },
-					]}
+					selectOptions={eventTypesList ?? [{ label: 'Не выбрано', value: '0' }]}
 				/>
 
 				<Tooltip text='Подсказка' position='top' wrapperClassName={styles.tooltip}>

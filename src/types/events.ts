@@ -17,6 +17,7 @@ export type EventItem = {
 	event_type_name: string
 	event_part_name: string
 	event_level_name: string
+	count_requests: string
 }
 
 export type CicleItem = {

@@ -40,14 +40,14 @@ export const OrgDetails = () => {
 		formData.append('phone', data?.phone ?? '')
 		formData.append('rasChet', data?.rasChet ?? '')
 		formData.append('title', data?.title ?? '')
-		formData.append(
-			'positionDir',
-			typeof data.positionDir === 'string'
-				? data.positionDir
-				: data.positionDir
-					? data.positionDir[0].value
-					: '0',
-		)
+		// formData.append(
+		// 	'positionDir',
+		// 	typeof data.positionDir === 'string'
+		// 		? data.positionDir
+		// 		: data.positionDir
+		// 			? data.positionDir[0].value
+		// 			: '0',
+		// )
 		try {
 			const res = await saveDetails(formData)
 			if (res) markAsSent(true)

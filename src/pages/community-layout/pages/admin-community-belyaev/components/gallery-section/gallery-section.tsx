@@ -8,6 +8,8 @@ import { ImageModal } from 'src/modals/images-modal/images-modal'
 import { useActions } from 'src/hooks/actions/actions'
 import { useGetNewIdImageQuery } from 'src/store/uploadImages/uploadImages.api'
 
+import styles from './index.module.scss'
+
 type GallerySectionProps = {
 	images?: ImageItemWithText[]
 }
@@ -57,7 +59,8 @@ export const GallerySection: FC<GallerySectionProps> = ({ images }) => {
 	}, [images])
 
 	return (
-		<AdminSection titleText='Галерея' sectionName='gallerySection'>
+		<AdminSection>
+			<p className={styles.title}>Галерея</p>
 			<ReactDropzone
 				previewVariant='img-list'
 				name='photoGallery'

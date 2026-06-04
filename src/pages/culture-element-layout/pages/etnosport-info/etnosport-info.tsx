@@ -7,7 +7,6 @@ import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useCallback, useEffect, useState } from 'react'
-import { transformToFormData } from 'src/helpers/utils'
 
 import { AdminContent } from 'src/components/admin-content/admin-content'
 import { AdminRoute } from 'src/routes/admin-routes/consts'
@@ -32,9 +31,7 @@ import { useGetLaureatInfoQuery, useSaveLaureatInfoMutation } from 'src/store/la
 export const EtnosportInfo = () => {
 	const { id = '0' } = useParams()
 	const { data: laureatInfo } = useGetLaureatInfoQuery(id)
-	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(
-		laureatInfo?.mainphoto ?? [],
-	)
+	const [localeImages, setLocaleImages] = useState<ImageItemWithText[]>(laureatInfo?.photos ?? [])
 	const [saveCultureInfo] = useSaveLaureatInfoMutation()
 
 	const { refetch: getNewId } = useGetNewIdImageQuery({
@@ -76,26 +73,43 @@ export const EtnosportInfo = () => {
 	}
 
 	useEffect(() => {
-		setLocaleImages(laureatInfo?.mainphoto ?? [])
-	}, [laureatInfo?.mainphoto])
+		setLocaleImages(laureatInfo?.photos ?? [])
+	}, [laureatInfo?.photos])
+
+	const defaultYearOption = laureatInfo?.laureat_year?.[0] ?? { label: 'Не выбрано', value: '0' }
 
 	const methods = useForm<LaureatInfoInputs>({
 		mode: 'onBlur',
 		resolver: yupResolver(laureatInfoSchema),
 		defaultValues: {
 			mainphoto: [],
+			laureat_year: id === '0' ? [defaultYearOption] : [],
 		},
 	})
 
 	const { isSent, markAsSent } = useIsSent(methods.control)
 
 	const onSubmit: SubmitHandler<LaureatInfoInputs> = async (data) => {
-		const newData = {
-			...data,
-			id,
-		}
+		const formData = new FormData()
+		formData.append('laureat_name', data?.laureat_name ?? '')
+		formData.append('laureat_info', data?.laureat_info ?? '')
+		formData.append('laureat_desc', data?.laureat_desc ?? '')
+		formData.append('laureat_full', data?.laureat_full ?? '')
+		formData.append(
+			'laureat_year',
+			typeof data.laureat_year === 'string' ? data.laureat_year : data?.laureat_year[0].value,
+		)
+		formData.append(
+			'laureat_vid',
+			typeof data.laureat_vid === 'string'
+				? data.laureat_vid
+				: data?.laureat_vid && data?.laureat_vid?.length > 0
+					? (data.laureat_vid[0]?.value ?? '')
+					: '',
+		)
+		formData.append('id', id)
 		try {
-			const res = await saveCultureInfo(transformToFormData(newData))
+			const res = await saveCultureInfo(formData)
 			if (res) markAsSent(true)
 		} catch (e) {
 			console.error(e)
@@ -104,7 +118,15 @@ export const EtnosportInfo = () => {
 
 	useEffect(() => {
 		if (laureatInfo) {
-			methods.reset({ ...laureatInfo })
+			const normalizedData = {
+				...laureatInfo,
+				laureat_year: Array.isArray(laureatInfo.laureat_year)
+					? laureatInfo.laureat_year
+					: laureatInfo.laureat_year
+						? [laureatInfo.laureat_year]
+						: [],
+			}
+			methods.reset(normalizedData)
 		}
 	}, [laureatInfo])
 
@@ -137,7 +159,7 @@ export const EtnosportInfo = () => {
 							className={styles.selectVid}
 						/>
 						<ControlledSelect
-							name='vid'
+							name='laureat_vid'
 							label='Вид участия *'
 							margin='0 0 20px 0'
 							selectOptions={[{ label: 'Не выбрано', value: '0' }]}
@@ -146,7 +168,7 @@ export const EtnosportInfo = () => {
 						<ReactDropzone
 							label='Фото лауреата *'
 							name='mainphoto'
-							prompt='PNG, JPG, JPEG. 1000 х1000px, не более 3 Мб'
+							prompt='PNG, JPG, JPEG. 300 х200px, не более 3 Мб'
 							accept={{ 'image/png': ['.png'], 'image/jpeg': ['.jpeg'] }}
 							margin='0 0 20px 0'
 							previewVariant='sm-img'

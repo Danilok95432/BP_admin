@@ -1,13 +1,11 @@
 import React, { type FC } from 'react'
 import { type SelOption } from 'src/types/select'
 import { type FieldError, useController, useFormContext } from 'react-hook-form'
-
 import Select from 'react-dropdown-select'
-
-import styles from './index.module.scss'
-
 import { ErrorMessage } from '@hookform/error-message'
 import cn from 'classnames'
+
+import styles from './index.module.scss'
 
 type ControlledSelectProps = {
 	selectOptions: SelOption[]
@@ -34,18 +32,18 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 	...props
 }) => {
 	const {
-		register,
 		control,
 		formState: { errors },
 	} = useFormContext()
 
 	const {
-		field: { onChange },
+		field: { value, onChange, onBlur },
 	} = useController({
 		name,
 		control,
-		defaultValue: selectOptions[0].value,
+		defaultValue: [],
 	})
+
 	return (
 		<div
 			className={cn(styles.selectWrapper, { [styles.selectHugeWrapper]: bigFont }, className)}
@@ -56,16 +54,19 @@ export const ControlledSelect: FC<ControlledSelectProps> = ({
 					{label} {isRequired ? <span className={styles.reqStar}>*</span> : null}
 				</label>
 			)}
+
 			<Select
-				{...register(name)}
 				{...props}
 				options={selectOptions}
-				values={[selectOptions[0]]}
-				onChange={(values) => onChange(values[0]?.value)}
+				values={Array.isArray(value) ? value : []}
+				onChange={(values) => onChange(values)}
+				onDropdownClose={onBlur}
 				disabled={disabled}
 				className={cn({ [styles.disabled]: disabled })}
 			/>
+
 			{dynamicError && <p className={styles.warningMessage}>{dynamicError.message}</p>}
+
 			{errors[name] && (
 				<p className={styles.warningMessage}>
 					<ErrorMessage errors={errors} name={name} />

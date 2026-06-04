@@ -62,10 +62,11 @@ export const AdminEventProfile: FC = () => {
 			time_to: timeFormatTo,
 			description: data.description,
 			conditions: data.conditions,
-			// id_event_type:
-			// 	typeof data.event_types_list === 'string'
-			// 		? data.event_types_list
-			// 		: data?.event_types_list[0].value,
+			count_requests: data.count_requests,
+			id_event_type:
+				typeof data.event_types_list === 'string'
+					? data.event_types_list
+					: data?.event_types_list[0].value,
 			/* id_event_level:
 				typeof data.event_levels_list === 'string'
 					? data.event_levels_list
@@ -177,6 +178,7 @@ export const AdminEventProfile: FC = () => {
 					<DescSection
 						ageList={eventInfoData?.age_list}
 						locationsList={eventInfoData?.locations_list}
+						eventTypesList={eventInfoData?.event_types_list}
 					/>
 					{id === 'new' ? (
 						<FlexRow $margin='0 0 40px 0'>

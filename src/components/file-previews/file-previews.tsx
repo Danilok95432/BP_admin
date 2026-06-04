@@ -24,6 +24,7 @@ type FilePreviewsProps = {
 	syncAdd?: (file: ImageItemWithText) => void
 	syncEdit?: (file: ImageItemWithText) => void
 	isPromoModal?: boolean
+	isSpecial?: boolean
 }
 export const FilePreviews: FC<FilePreviewsProps> = ({
 	files,
@@ -33,6 +34,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 	uploadBtn,
 	isPromoModal = false,
 	imgtype = '',
+	isSpecial = false,
 	syncAdd,
 	syncEdit,
 }) => {
@@ -47,7 +49,7 @@ export const FilePreviews: FC<FilePreviewsProps> = ({
 			<ul className={styles.smImgFilesList}>
 				{files.map((img, idx) => (
 					<li key={img.id}>
-						<div className={styles.smImgWrapper}>
+						<div className={isSpecial ? styles.smImgWrapperBelyaev : styles.smImgWrapper}>
 							<img
 								src={img.thumbnail}
 								alt={img.title}
