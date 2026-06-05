@@ -16,13 +16,4 @@ export const TicketsFiltrationInputs: FilterTableInput[] = [
 		placeholder: 'искать по e-mail...',
 		type: 'text',
 	},
-	{
-		name: 'reg_type',
-		placeholder: 'вид регистрации',
-		type: 'select',
-		options: [
-			{ label: 'Одиночный', value: '0' },
-			{ label: 'Групповой', value: '1' },
-		],
-	},
 ]

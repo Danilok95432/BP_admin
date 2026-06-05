@@ -9,12 +9,12 @@ import { AdminButton } from 'src/UI/AdminButton/AdminButton'
 import { FlexRow } from 'src/components/flex-row/flex-row'
 
 import styles from './index.module.scss'
-import { ControlledInput } from 'src/components/controlled-input/controlled-input'
 import { ReactDropzone } from 'src/components/react-dropzone/react-dropzone'
 import { useGetHeaderEditQuery, useSaveHeaderMutation } from 'src/store/pages/pages.api'
 import { transformToFormData } from 'src/helpers/utils'
 import { useIsSent } from 'src/hooks/sent-mark/sent-mark'
 import { type ConcursInputs, concursSchema } from './schema'
+import { QuillEditor } from 'src/components/quill-editor/quill-editor'
 
 export const AdminAboutContest: FC = () => {
 	const { data: headerData } = useGetHeaderEditQuery('concurs')
@@ -56,13 +56,7 @@ export const AdminAboutContest: FC = () => {
 					noValidate
 					autoComplete='off'
 				>
-					<ControlledInput
-						name='short'
-						label='О конкурсе *'
-						margin=' 0 0 20px 0'
-						isTextarea
-						height='200px'
-					/>
+					<QuillEditor className={styles.quillEditor} name='short' label='О конкурсе *' />
 					<ReactDropzone
 						label='Основное изображение'
 						name='mainphoto'

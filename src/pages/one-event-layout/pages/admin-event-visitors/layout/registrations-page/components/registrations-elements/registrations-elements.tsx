@@ -95,14 +95,7 @@ export const RegistrationsElements = () => {
 		}
 	}
 
-	const tableTitles = [
-		'ID',
-		'Участник',
-		'Дата и время регистрации',
-		'Вид регистрации',
-		'Телефон',
-		'E-mail',
-	]
+	const tableTitles = ['ID', 'Участник', 'Дата и время регистрации', 'Телефон', 'E-mail']
 
 	const formatObjectsTableData = (registrations: EventRegistrationsElem[]) => {
 		return (
@@ -113,7 +106,7 @@ export const RegistrationsElements = () => {
 						<p key='0'>{regEl.id}</p>,
 						<p key='1'>{regEl.guest}</p>,
 						<p key='2'>{regEl.date}</p>,
-						<p key='3'>{regEl.reg_type}</p>,
+
 						<p key='4'>{regEl.phone}</p>,
 						<p key='5'>{regEl.email}</p>,
 					],

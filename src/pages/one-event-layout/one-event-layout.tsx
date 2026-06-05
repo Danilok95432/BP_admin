@@ -13,7 +13,7 @@ export const OneEventLayout = () => {
 	const location = useLocation()
 	const eventTabs: TabNavigationItem[] = [
 		{
-			title: 'Профиль события',
+			title: 'Профиль номинации',
 			link: `/contest/contest-profile/${id ?? 'new'}`,
 		},
 		// {
@@ -36,11 +36,11 @@ export const OneEventLayout = () => {
 			link: `/contest/contest-lists/${id}`,
 			indexLink: `/contest/contest-lists/${id}/registrations`,
 		},
-		{
-			title: 'Размещение (публикация)',
-			link: `/contest/contest-placement/${id}`,
-			indexLink: `/contest/contest-placement/${id}`,
-		},
+		// {
+		// 	title: 'Размещение (публикация)',
+		// 	link: `/contest/contest-placement/${id}`,
+		// 	indexLink: `/contest/contest-placement/${id}`,
+		// },
 	]
 	const [isProgramPage, setIsProgramPage] = useState<boolean>(false)
 

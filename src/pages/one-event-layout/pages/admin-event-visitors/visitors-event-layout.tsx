@@ -18,10 +18,10 @@ export const VisitorsEventLayout = () => {
 			title: 'Поданные заявки',
 			link: `/contest/contest-lists/${id}/tickets`,
 		},
-		{
-			title: 'Журнал проходов',
-			link: `/contest/contest-lists/${id}/log-enters`,
-		},
+		// {
+		// 	title: 'Журнал проходов',
+		// 	link: `/contest/contest-lists/${id}/log-enters`,
+		// },
 		{
 			title: 'Лонг лист',
 			link: `/contest/contest-lists/${id}/long-list`,
