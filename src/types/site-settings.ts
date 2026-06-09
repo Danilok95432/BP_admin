@@ -27,4 +27,5 @@ export type SiteSettingsResponse = {
 	email: string
 	vk: string
 	title: string
+	metric: string
 }

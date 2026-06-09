@@ -51,6 +51,7 @@ export const AdminSettings: FC = () => {
 		formData.append('vk', data?.vk ?? '')
 		formData.append('title', data?.title ?? '')
 		formData.append('copyright', data?.copyright ?? '')
+		formData.append('metric', data.metric ?? '')
 		try {
 			const res = await saveSettings(formData)
 			if (res) markAsSent(true)

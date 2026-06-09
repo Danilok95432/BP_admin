@@ -10,14 +10,14 @@ import { Container } from 'src/UI/Container/Container'
 export const VisitorsEventLayout = () => {
 	const { id = '' } = useParams()
 	const eventTabs: TabNavigationItem[] = [
-		{
-			title: 'Участники',
-			link: `/contest/contest-lists/${id}/registrations`,
-		},
-		{
-			title: 'Поданные заявки',
-			link: `/contest/contest-lists/${id}/tickets`,
-		},
+		// {
+		// 	title: 'Участники',
+		// 	link: `/contest/contest-lists/${id}/registrations`,
+		// },
+		// {
+		// 	title: 'Поданные заявки',
+		// 	link: `/contest/contest-lists/${id}/tickets`,
+		// },
 		// {
 		// 	title: 'Журнал проходов',
 		// 	link: `/contest/contest-lists/${id}/log-enters`,
@@ -34,10 +34,10 @@ export const VisitorsEventLayout = () => {
 			title: 'Голосование экспертного совета',
 			link: `/contest/contest-lists/${id}/expert-soviet`,
 		},
-		{
-			title: 'Народное голосование',
-			link: `/contest/contest-lists/${id}/people-voting`,
-		},
+		// {
+		// 	title: 'Народное голосование',
+		// 	link: `/contest/contest-lists/${id}/people-voting`,
+		// },
 		// {
 		// 	title: 'Сводка продаж',
 		// 	link: `/contest/contest-lists/${id}/sales`,
