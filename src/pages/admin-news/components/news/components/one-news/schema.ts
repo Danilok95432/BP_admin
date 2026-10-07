@@ -29,7 +29,7 @@ export type OneNewsInputs = {
 export const oneNewsSchema = yup.object().shape({
 	title: yup
 		.string()
-		.required('Заголовок обязателен')
+		.required('Название обязательно')
 		.max(200, 'Заголовок не может превышать 200 символов'),
 	itemdate: yup.string().required('Введите дату'),
 	short: yup.string().required('Введите короткое описание'),

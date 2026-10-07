@@ -9,5 +9,5 @@ export type ImagesInputs = {
 }
 
 export const imageSchema = yup.object({
-	title: yup.string().required('Заголовок обязателен'),
+	title: yup.string().required('Название обязательно'),
 })

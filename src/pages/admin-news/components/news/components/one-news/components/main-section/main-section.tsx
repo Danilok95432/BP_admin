@@ -67,6 +67,7 @@ export const MainSection: FC<MainSectionProps> = ({ galleryOptions, photo, photo
 				previewVariant='sm-img'
 				imgtype='news'
 				fileImages={photo}
+				isSquareImg
 			/>
 			<GallerySection images={photos} idItem={id} />
 		</AdminSection>

@@ -46,6 +46,7 @@ type ReactDropzoneProps = {
 	isProgram?: boolean
 	isPromoModal?: boolean
 	isSpecial?: boolean
+	isSquareImg?: boolean
 }
 
 export const ReactDropzone: FC<ReactDropzoneProps> = ({
@@ -71,6 +72,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 	isSpecial = false,
 	fileImages = [],
 	imgEditId = '',
+	isSquareImg = false,
 	syncAdd,
 	syncEdit,
 	text,
@@ -238,6 +240,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 					uploadBtn={currentFiles.length < maxFiles ? dropzoneArea : null}
 					isPromoModal={isPromoModal}
 					isSpecial={isSpecial}
+					isSquareImg={isSquareImg}
 				/>
 				{errors[name] && (
 					<p className={styles.warningMessage}>
@@ -269,6 +272,7 @@ export const ReactDropzone: FC<ReactDropzoneProps> = ({
 				removeHandler={removeFile}
 				isPromoModal={isPromoModal}
 				isSpecial={isSpecial}
+				isSquareImg={isSquareImg}
 			/>
 			{(currentFiles.length < maxFiles || currentFiles.some((file) => !file.thumbnail)) && (
 				<div

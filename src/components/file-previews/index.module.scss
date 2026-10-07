@@ -194,6 +194,19 @@
     }
   }
 
+  .smImgWrapperSquare {
+    width: 296px;
+    height: 190px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
   .smImgWrapper {
     width: 200px;
     height: 200px;
